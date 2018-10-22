@@ -1,0 +1,5 @@
+enabled_locales: ["en", "ja"]
+size:
+  length_name_category: 100
+  length_name: 255
+  length_name_description: 2000
