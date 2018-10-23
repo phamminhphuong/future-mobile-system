@@ -10,44 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_095717) do
+ActiveRecord::Schema.define(version: 2018_10_21_154246) do
 
-  create_table "account", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "email", limit: 191
-    t.string "password", limit: 45
+  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.string "fullname"
+    t.string "address"
+    t.string "phone"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.index ["email"], name: "index_accounts_on_email", unique: true
   end
 
-  create_table "account_type", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name", limit: 200, collation: "utf8_general_ci"
-  end
-
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "category", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name", limit: 45
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "created_at"], name: "index_comments_on_account_id_and_created_at"
+    t.index ["account_id"], name: "index_comments_on_account_id"
   end
 
-  create_table "comment", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "content", limit: 45
-  end
-
-  create_table "detail_export", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "quantity"
-    t.float "price"
-  end
-
-  create_table "export_product", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "state"
-    t.date "date_export"
-    t.string "descrition", limit: 45
-  end
-
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.bigint "product_id"
     t.datetime "created_at", null: false
@@ -56,22 +49,35 @@ ActiveRecord::Schema.define(version: 2018_10_21_095717) do
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
-  create_table "manufacturers", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "manufacturers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "product", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name", limit: 200, collation: "utf8_general_ci"
-    t.string "contry", limit: 200, collation: "utf8_general_ci"
-    t.string "image", limit: 100
+  create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "quantity"
     t.float "price"
-    t.string "description", limit: 45
+    t.bigint "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id", "created_at"], name: "index_order_details_on_order_id_and_created_at"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "status"
+    t.string "phone"
+    t.string "address"
+    t.float "total"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "created_at"], name: "index_orders_on_account_id_and_created_at"
+    t.index ["account_id"], name: "index_orders_on_account_id"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
     t.decimal "price", precision: 10
@@ -87,15 +93,10 @@ ActiveRecord::Schema.define(version: 2018_10_21_095717) do
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
   end
 
-  create_table "user", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "fullname", limit: 50, collation: "utf8_general_ci"
-    t.string "image", limit: 45
-    t.string "address", limit: 200, collation: "utf8_general_ci"
-    t.string "phone", limit: 15
-    t.string "day_of_birth", limit: 45
-  end
-
+  add_foreign_key "comments", "accounts"
   add_foreign_key "images", "products"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "orders", "accounts"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
 end

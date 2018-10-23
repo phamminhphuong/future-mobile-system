@@ -27,6 +27,4 @@ config/credentials.yml.enc
 config/database.yml
 config/storage.yml
 /.idea
-
-# Ignore application configuration
 /config/application.yml

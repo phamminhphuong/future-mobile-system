@@ -3,3 +3,9 @@ size:
   length_name_category: 100
   length_name: 255
   length_name_description: 2000
+client:
+  minimum: 6
+  maximum1: 50
+  maximum2: 255
+  maximum3: 15
+  maximum3: 11
