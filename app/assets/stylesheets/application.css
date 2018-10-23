@@ -1,4 +1,9 @@
 /*
  *= require_tree .
  *= require_self
+ *= require fontAnwesome/css/fontawesome-all
+ *= require fontAnwesome/css/fontawesome-all.min
+ *= require fontAnwesome/css/fontawesome
+ *= require fontAnwesome/css/fontawesome.min
+ *= require style_home/style.min
  */

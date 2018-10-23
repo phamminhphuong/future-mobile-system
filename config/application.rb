@@ -5,5 +5,6 @@ module FutureMobileSystem
   class Application < Rails::Application
     config.load_defaults 5.2
     config.time_zone = Settings.time_zone
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

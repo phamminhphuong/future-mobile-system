@@ -1,13 +1,349 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FutureMobileSystem</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
-  </head>
-  <body>
-    <%= yield %>
-  </body>
+
+<head>
+  <title><%= t "future_mobile_system" %></title>
+  <%= render "layouts/rails_default" %>
+</head>
+
+<body class="page-vinregularcategorypage pageType-CategoryPage template-pages-category-vinCategoryPage  language-vi">
+  <main id="page" data-currency-iso-code="VND">
+    <a href="#skip-to-content" class="skiptocontent" data-role="none"></a>
+    <button class="bg-overlay" type="button"></button>
+    <div class="slider__logo hidden-xs hidden-sm">
+      <div class="content"></div>
+    </div>
+    <%= render "layouts/header" %>
+    <div id="content" class="clearfix">
+      <a id="skip-to-content"></a>
+      <div class="page-category">
+        <div class="category__section category__section-1">
+          <div class="section__breadcrumb-inner">
+            <div class="section__breadcrumb section__breadcrumb--full">
+              <div class="container">
+                <ol id="header__breadcrumb" class="header__breadcrumb breadcrumb">
+                  <li><%= link_to t("home"), "#" %></li>
+                  <li><%= link_to t("iphone"), "#" %></li>
+                  <li><%= link_to t("samsung"), "#" %></li>
+                  <li><%= link_to t("oppo"), "#" %></li>
+                  <li><%= link_to t("sony"), "#" %></li>
+                  <li><%= link_to t("xiaomi"), "#" %></li>
+                  <li><%= link_to t("nokia"), "#" %></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="category__section category__section-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+                <div id="sidebar-wrapper" class="js-product-facet">
+                  <!-- main facet search on PLP page -->
+                  <div class="sidebar-container">
+                    <div class="section__sidebar section__category">
+                      <ul data-role="listview" data-inset="true" data-theme="e" data-content-theme="e" class="category-menu ">
+                        <li class="selected active category-item category-item_lv1">
+                          <a href="#"><%= t "category" %></a>
+                          <ul data-role="listview" data-inset="true" data-theme="e" data-content-theme="e" class="category-menu child-level-1">
+                            <li class=" category-item category-item_lv2">
+                              <%= link_to t("iphone"), "#" %>
+                            </li>
+                            <li class=" category-item category-item_lv2">
+                              <%= link_to t("samsung"), "#" %>
+                            </li>
+                            <li class=" category-item category-item_lv2">
+                              <%= link_to t("oppo"), "#" %>
+                            </li>
+                            <li class=" category-item category-item_lv2">
+                              <%= link_to t("sony"), "#" %>
+                            </li>
+                            <li class=" category-item category-item_lv2">
+                              <%= link_to t("xiaomi"), "#" %>
+                            </li>
+                            <li class=" category-item category-item_lv2">
+                              <%= link_to t("nokia"), "#" %>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="js-facet section__sidebar ">
+                      <div class="facet-group js-facet-group">
+                        <div class="facet-group-title">
+                          <a href="javascript:;"><%= t "hot" %></a>
+                        </div>
+                        <div class="facet-group-content js-facet-form ">
+                          <ul class="facet-list js-facet-list facet-list-scroll" style="max-height:500px">
+                            <li data-label="BEAUTY CONCEPT" style="margin-left:18px">
+                              <span class="facet__text">
+                                <a href="san-pham-ban-chay/1.html">
+                                  <div style="width:100px;height:200px">
+                                    <%= image_tag "anh1.jpg" %>
+                                  </div>
+                                </a>
+                                <span class="facet__value__count"></span>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="facet-group js-facet-group">
+                        <div class="facet-group-title">
+                          <a href="javascript:;"> <%= t "product_price" %>  </a>
+                        </div>
+                        <div class="facet-group-content js-facet-form">
+                          <ul class="facet-list js-facet-list">
+                            <li data-label="≤ 500.000đ">
+                              <span class="facet__text">
+                                <%= link_to t("lessthan"), "#" %>
+                                <span class="facet__value__count"> </span>
+                              </span>
+                            </li>
+                            <li data-label="500.000 - 2.000.000đ">
+                              <span class="facet__text">
+                                 <%= link_to t("about_price"), "#" %>
+                                <span class="facet__value__count"></span>
+                              </span>
+                            </li>
+                            <li data-label="2.000.000 - 5.000.000đ">
+                              <span class="facet__text">
+                                <%= link_to t("about_price1"), "#" %>
+                                <span class="facet__value__count"></span>
+                              </span>
+                            </li>
+                            <li data-label="5.000.000 - 10.000.000đ">
+                              <span class="facet__text">
+                                <%= link_to t("about_price2"), "#" %>
+                                <span class="facet__value__count"></span>
+                              </span>
+                            </li>
+                            <li data-label="≥ 10.000.000đ">
+                              <span class="facet__text">
+                                <%= link_to t("about_price3"), "#" %>
+                                <span class="facet__value__count"></span>
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-9 col-lg-10 product-list__wrapper">
+                <div class="product-list__header">
+                  <div class="row">
+                    <div class="col-md-6 col-lg-7">
+                      <h1 class="header__title"><%= t "future_mobile" %></h1>
+                      <span class="header__search-result">
+                        <%= t "product_quantity" %>
+                      </span>
+                      <div class="header__description hidden-xs">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-list__container">
+                  <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
+                      <div class="product-item__placeholder hidden-sm hidden-xs"></div>
+                      <div class="product-item">
+                        <form action="#" method="post">
+                          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
+                          <input type="hidden" name="productId" value="1">
+                          <input type="hidden" name="quantity" value="1">
+                          <div class="product-item__container">
+                            <a class="product-item__thumbnail " href="chi-tiet-san-pham/1.html">
+                              <div style="width:200px;height:200px">
+                                <%= image_tag "anh1.jpg" %>
+                              </div>
+                            </a>
+                            <div class="product-item__info">
+                              <a class="product-item__info-title" href="chi-tiet-san-pham/1.html">
+                                <%= t "iphonex" %>
+                              </a>
+                              <div class="product-item__info-price">
+                                <span class="product-item__info-price-sale"  style="padding-left:20px"><%= t "price1" %></span>
+                                <span class="product-item__info-price-original"><%= t "price2" %></span>
+                              </div>
+                              <div style="padding: 15px">
+                                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
+                                  <%= t "add_to_card" %>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
+                      <div class="product-item__placeholder hidden-sm hidden-xs"></div>
+                      <div class="product-item">
+                        <form action="https://shopbanhangmypham.000webhostapp.com/public/gio-hang" method="post">
+                          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
+                          <input type="hidden" name="productId" value="2">
+                          <input type="hidden" name="quantity" value="1">
+                          <div class="product-item__container">
+                            <a class="product-item__thumbnail " href="chi-tiet-san-pham/2.html">
+                              <div style="width:200px;height:200px">
+                                <%= image_tag "anh2.jpg" %>
+                              </div>
+                            </a>
+                            <div class="product-item__info">
+                              <a class="product-item__info-title" href="chi-tiet-san-pham/2.html">
+                                <%= t "samsungs9" %>
+                              </a>
+                              <div class="product-item__info-price">
+                                <span class="product-item__info-price-sale" style="padding-left:20px"> <%= t "price3" %></span>
+                                <span class="product-item__info-price-original"> <%= t "price4" %></span>
+                              </div>
+                              <div style="padding: 15px">
+                                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
+                                   <%= t "add_to_card" %>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
+                      <div class="product-item__placeholder hidden-sm hidden-xs"></div>
+                      <div class="product-item">
+                        <form action="#" method="post">
+                          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
+                          <input type="hidden" name="productId" value="2">
+                          <input type="hidden" name="quantity" value="1">
+                          <div class="product-item__container">
+                            <a class="product-item__thumbnail " href="chi-tiet-san-pham/2.html">
+                              <div style="width:200px;height:200px">
+                                <%= image_tag "anh4.jpg" %>
+                              </div>
+                            </a>
+                            <div class="product-item__info">
+                              <a class="product-item__info-title" href="chi-tiet-san-pham/2.html">
+                                <%= t "xiaomi8" %>
+                              </a>
+                              <div class="product-item__info-price">
+                                <span class="product-item__info-price-sale" style="padding-left:20px"><%= t "price5" %></span>
+                                <span class="product-item__info-price-original"><%= t "price6" %></span>
+                              </div>
+                              <div style="padding: 15px">
+                                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
+                                  <%= t "add_to_card" %>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
+                      <div class="product-item__placeholder hidden-sm hidden-xs"></div>
+                      <div class="product-item">
+                        <form action="#" method="post">
+                          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
+                          <input type="hidden" name="productId" value="2">
+                          <input type="hidden" name="quantity" value="1">
+                          <div class="product-item__container">
+                            <a class="product-item__thumbnail " href="chi-tiet-san-pham/2.html">
+                              <div style="width:200px;height:200px">
+                                <%= image_tag "anh3.jpg" %>
+                              </div>
+                            </a>
+                            <div class="product-item__info">
+                              <a class="product-item__info-title" href="chi-tiet-san-pham/2.html">
+                                <%= t "oppos7" %>
+                              </a>
+                              <div class="product-item__info-price">
+                                <span class="product-item__info-price-sale" style="padding-left:20px"><%= t "price7" %></span>
+                                <span class="product-item__info-price-original"><%= t "price8" %></span>
+                              </div>
+                              <div style="padding: 15px">
+                                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
+                                  <%= t "add_to_card" %>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div id="addToCartTitle" class="display-none">
+                      <div class="add-to-cart-header">
+                        <div class="headline">
+                          <span class="headline-text"><%= t "shopping_card" %></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="slogan-container">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-md-4">
+                <div class="slogan">
+                  <div class="thumb">
+                    <img src="img/3.png" alt="" />
+                  </div>
+                  <!-- end .media-left -->
+                  <div class="text">
+                    <div class="title"><%= t "top1" %></div>
+                    <div class="subtitle"><%= t "electrolux" %></div>
+                  </div>
+                  <!-- end .media-body -->
+                </div>
+              </div>
+              <!-- end .slogan -->
+              <div class="col-xs-12 col-md-4">
+                <div class="slogan">
+                  <div class="thumb">
+                    <img src="img/2.png" alt="" />
+                  </div>
+                  <!-- end .media-left -->
+                  <div class="text">
+                    <div class="title"><%= t "ship_speed" %></div>
+                    <div class="subtitle"><%= t "speed" %></div>
+                  </div>
+                  <!-- end .media-body -->
+                </div>
+              </div>
+              <!-- end .slogan -->
+              <div class="col-xs-12 col-md-4">
+                <div class="slogan">
+                  <div class="thumb">
+                    <img src="img/1.png" alt="" />
+                  </div>
+                  <!-- end .media-left -->
+                  <div class="text">
+                    <div class="title"><%= t "ship_speed" %></div>
+                    <div class="subtitle"><%= t "ship_speed" %></div>
+                  </div>
+                  <!-- end .media-body -->
+                </div>
+              </div>
+              <!-- end .slogan -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="vinfooter"></div>
+      <%= render "layouts/footer"%>
+  </main>
+  <script type="text/javascript" src="js/vendors.min31bb.js?v=1525399962937"></script>
+  <script src="js/jquery/dist/jquery.min.js"></script>
+  <div style='text-align: right;position: fixed;z-index:9999999;bottom: 0; width: 100%;cursor: pointer;line-height: 0;display:block !important;'><a
+      title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="#"><img
+        src="../../raw.githubusercontent.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png" alt="www.000webhost.com"></a>
+  </div>
+</body>
 </html>

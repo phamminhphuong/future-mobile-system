@@ -20,6 +20,7 @@
 .byebug_history
 /config/master.key
 /test/*
+vendor/assets/images/
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
@@ -27,4 +28,7 @@ config/credentials.yml.enc
 config/database.yml
 config/storage.yml
 /.idea
+/config/application.yml
+
+# Ignore application configuration
 /config/application.yml
