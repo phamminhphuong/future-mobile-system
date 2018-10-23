@@ -1,0 +1,157 @@
+<header class="js-mainHeader animated">
+  <nav class="navigation navigation--top">
+    <div class="row header--segment">
+      <div class="container">
+        <div class="row">
+          <div class="yCmsContentSlot col-xs-12 col-md-5 header--segment-left">
+            <marquee><%= t "welcome" %></marquee>
+          </div>
+          <div class="yCmsContentSlot col-md-7 hidden-xs hidden-sm header--segment-right">
+            <div class="header--segment-item pull-right pop-hover js-pop-hover">
+              <a href="javascript:;" class="pop-hover-title" data-target="#" data-toggle="dropdown" role="button"
+                aria-haspopup="true" aria-expanded="false" class="pop-hover-title">
+                <%= image_tag "4.png" %>  <%= t "guest" %>
+              </a>
+              <div class="pop-hover-open">
+                <ul>
+                  <li class="hotline_group">
+                    <%= image_tag "4.png" %>
+                    <div class="hotline_group--right">
+                      <div>Hotline</div>
+                      <span class="highlight-color"><%= t "guest" %></span>
+                    </div>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="cau-hoi-thuong-gap.html"><%= t "guest" %></a>
+                  </li>
+                  <li>
+                    <a href="lien-he.html"><%= t "guest" %></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <nav class="navigation navigation--middle js-navigation--middle">
+    <div class="container">
+      <div class="row">
+        <div class="visible-xs-inline-block hidden-sm-inline-block">
+          <button class="mobile__nav__row--btn btn mobile__nav__row--btn-menu js-toggle-sm-navigation" type="button">
+            <span class="adr-icon all-department visible-xs visible-sm"></span>
+          </button>
+        </div>
+        <div class="visible-xs visible-sm banner__wrapper--logo">
+          <div class="js-site-logo">
+            <div class="yCmsComponent yComponentWrapper">
+              <div class="yCmsContentSlot js-site-logo">
+                <div class="banner__component banner banner__component--logo">
+                  <a href="#">
+                    <%= image_tag "logo.jpg" %>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row desktop__nav">
+        <div class="nav__left col-xs-12 col-sm-11 col-md-9">
+          <div class="col-sm-3 hidden-xs hidden-sm">
+            <div class="yCmsContentSlot js-site-logo">
+              <div class="banner__component banner banner__component--logo">
+                <a href="#">
+                  <%= image_tag "logo.jpg" %>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-9">
+            <div class="site-search">
+              <span class="adr-icon icon-search-complete visible-xs visible-sm"></span>
+              <div class="ui-front">
+                <form name="search_form_SearchBox" method="post" action="https://shopbanhangmypham.000webhostapp.com/public/tim-kiem"
+                  class="js-search-form">
+                  <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
+                  <div class="input-group" style="border: solid 2px #ed1d24">
+                    <div class="input-group-btn no-padding hidden-xs hidden-sm">
+                      <div class="dropdown js-select-category">
+                        <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
+                          aria-expanded="false">
+                          <span class="category-selected"><%= t "future_mobile" %></span>
+                        </a>
+                      </div>
+                    </div>
+                    <input type="text" title="Vui lòng không để trống" id="js-site-search-input" class="form-control js-site-search-input"
+                      name="timkiem" value="" maxlength="100" placeholder="Tìm sản phẩm bạn mong muốn">
+                    <span class="input-group-btn btn-find-group">
+                      <button class="btn btn-link" type="submit" style="background: #ed1d24; color: #ffffff;"><%= t "search" %></button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="header__links__segment_mega_menu hidden-xs hidden-sm">
+            </div>
+          </div>
+        </div>
+        <div class="nav__right col-xs-6 col-sm-1 col-md-3 hidden-xs">
+          <ul class="yCmsContentSlot nav__links">
+            <li class="liOffcanvas header--user-group col-md-10 visible-md visible-lg">
+              <div class="icon-user">
+                <div class="icon-user--inner">
+                  <%= image_tag "user.png" %>
+                  <span class="js-user-gift-code user-group--gift hide"></span>
+                </div>
+              </div>
+              <div class="js-user--info">
+                <div class="user-group--info">
+                  <div class="pop-hover js-pop-hover">
+                    <a href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false" class="pop-hover-title">
+                      <span><%= t "login_register" %></span>
+                      <span class="adr-icon dropdownlist-header"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                      <ul>
+                        <li>
+                          <a href="dangnhap.html" class="btn btn-login js-sign-in__popup">
+                            <%= t "login" %>
+                          </a>
+                        </li>
+                        <li>
+                          <span><%= t "not_account" %></span>
+                        </li>
+                        <li>
+                          <%= link_to t("new_account"), "#" %>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="col-sm-12 col-md-2">
+              <div class="nav-cart">
+                <a href="gio-hang.html" class="mini-cart-link js-mini-cart-link" data-mini-cart-url="/cart/rollover"
+                  data-mini-cart-refresh-url="/cart/miniCart/SUBTOTAL" data-mini-cart-name="Cart"
+                  data-mini-cart-empty-name="Empty Cart" data-mini-cart-items-text="Items">
+                  <div class="mini-cart-icon"><span class="adr-icon icon-cart hidden-xs hidden-sm"></span>
+                    <span class="adr-icon icon-cart-mobile visible-xs visible-sm"></span>
+                    <span class="mini-cart-price js-cart-total-unit"><%= t "zero" %></span>
+                  </div>
+                </a>
+              </div>
+              <div class="mini-cart-container js-mini-cart-container"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <a id="skiptonavigation"></a>
+</header>
