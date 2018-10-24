@@ -1,0 +1,70 @@
+<% provide :title, t("admin_dashboard") %>
+<% provide :db, t("dashboard") %>
+<section class="content">
+  <div class="row">
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>150</h3>
+          <p>
+            <%= t "account" %>
+          </p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+        </div>
+        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
+        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>53<sup style="font-size: 20px">%</sup></h3>
+          <p>
+            <%= t "nanufacturer" %>
+          </p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-building" aria-hidden="true"></i>
+        </div>
+        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
+        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>44</h3>
+          <p>
+            <%= t "category" %>
+          </p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-list-alt" aria-hidden="true"></i>
+        </div>
+        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
+        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>65</h3>
+          <p>
+            <%= t "product" %>
+          </p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-product-hunt" aria-hidden="true"></i>
+        </div>
+        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
+        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

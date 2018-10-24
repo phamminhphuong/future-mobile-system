@@ -29,6 +29,5 @@ config/database.yml
 config/storage.yml
 /.idea
 /config/application.yml
-
-# Ignore application configuration
-/config/application.yml
+/app/assets/images
+/vendor/assets/images
