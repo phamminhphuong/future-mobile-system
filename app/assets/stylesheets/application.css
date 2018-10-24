@@ -6,4 +6,9 @@
  *= require fontAnwesome/css/fontawesome
  *= require fontAnwesome/css/fontawesome.min
  *= require style_home/style.min
+ *= require admin/bootstrap.min
+ *= require admin/font-awesome/css/font-awesome.min
+ *= require admin/AdminLTE.min
+ *= require admin/_all-skins.min
+ *= require admin/bootstrap3-wysihtml5.mins
  */
