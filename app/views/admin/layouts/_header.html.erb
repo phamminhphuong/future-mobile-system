@@ -1,0 +1,32 @@
+<header class="main-header">
+  <%= link_to "#", html_options = {class: "logo"} do %>
+    <span class="logo-mini"><b><%= t("a") %></b><%= t("lt") %></span>
+    <span class="logo-lg"><b><%= t("admin") %></b><%= t("lte") %></span>
+  <% end %>
+  <nav class="navbar navbar-static-top">
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+    </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <%= link_to "#", html_options = {class: "dropdown-toggle", data:{toggle: "dropdown"}} do %>
+            <span class="hidden-xs"><%= t("alexander_pierce") %></span>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li class="user-header">
+              <p><%= t "alexander" %></p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                <a href="#" class="btn btn-default btn-flat"><%= t "profile" %></a>
+              </div>
+              <div class="pull-right">
+                <a href="#" class="btn btn-default btn-flat"><%= t "sign_out" %></a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

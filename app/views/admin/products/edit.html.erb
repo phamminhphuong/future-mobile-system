@@ -1,0 +1,8 @@
+<% provide :title, t("admin_product") %>
+<% provide :db, t("product") %>
+<% provide :action, t("edit") %>
+<%= render "admin/products/form" %>
+<div class="box-footer">
+  <%= link_to t("list"), "#" %> |
+  <%= link_to t("show"), "#" %>
+</div>

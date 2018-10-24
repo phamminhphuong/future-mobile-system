@@ -1,0 +1,45 @@
+<form role="form">
+  <div class="box-body">
+    <div class="form-group">
+      <label for="name"><%= t "name" %></label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label for="quantity"><%= t "quantity" %></label>
+      <input type="number" class="form-control" value="0" id="quantity">
+    </div>
+    <div class="form-group">
+      <label for="price"><%= t "price" %></label>
+      <input type="text" class="form-control" value="0" id="price">
+    </div>
+    <div class="form-group">
+      <label for="hot"><%= t "hot" %></label>
+      <input type="number" class="form-control" value="0" id="hot">
+    </div>
+    <div class="form-group">
+      <label for="description"><%= t "description" %></label>
+      <input type="text" class="form-control" id="description" placeholder="Enter description">
+    </div>
+    <div class="form-group">
+      <label for="category"><%= t "category" %></label>
+      <select class="form-control">
+        <option value="1"><%= t "iphone" %></option>
+        <option value="0"><%= t "samsung" %></option>
+      </select>
+    </div>
+     <div class="form-group">
+      <label for="manuracturerer"><%= t "manufacturer" %></label>
+      <select class="form-control">
+        <option value="1"><%= t "iphone" %></option>
+        <option value="0"><%= t "samsung" %></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="Image"><%= t "image" %></label>
+      <input type="file" name="image" class="form-control">
+    </div>
+  </div>
+  <div class="box-footer">
+    <button type="submit" class="btn btn-primary"><%= t "submit" %></button>
+  </div>
+</form>
