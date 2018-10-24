@@ -1,6 +1,16 @@
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery
 //= require bootstrap
+//= require jquery
+//= require bootstrap
+//= require jquery
+//= require bootstrap
+//= require admin/jquery.min
+//= require admin/bootstrap.min
+//= require admin/adminlte
+//= require admin/jquery.dataTables.min
+//= require admin/dataTables.bootstrap.min
+//= require admin/ckeditor
+//= require showtable
 //= require_tree .
