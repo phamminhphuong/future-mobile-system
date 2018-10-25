@@ -12,7 +12,7 @@ class Admin::AccountsController < Admin::BaseController
   def create
     @account = Account.new account_params
     if @account.save
-      flash[:info] = t "successfully_create"
+      flash[:success] = t "successfully_create"
       redirect_to admin_accounts_url
     else
       render :new
@@ -30,6 +30,15 @@ class Admin::AccountsController < Admin::BaseController
     else
       render :edit
     end
+  end
+
+  def destroy
+    if @account.destroy
+      flash[:success] = t "account_delete"
+    else
+      flash[:danger] = t "cannot_remove_account"
+    end
+    redirect_to admin_accounts_url
   end
 
   private

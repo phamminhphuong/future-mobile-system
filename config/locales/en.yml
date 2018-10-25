@@ -17,7 +17,6 @@ en:
   future_mobile: "Future Mobile"
   product_quantity: "There are available 12 products"
   iphonex: "Apple iPhone X 64GB"
-
   add_to_card: "Add to card"
   samsungs9: "Samsung Galaxy s9+ 128GB"
   xiaomi8: "Xiaomi mi 8"
@@ -126,3 +125,7 @@ en:
   sign_success: "Register success"
   contains_err: "A form container"
   error: "error"
+  account_type: "Account type"
+  account_delete: "Account deleted"
+  you_sure: "You sure?"
+  cannot_remove_account: "Cannot remove account"

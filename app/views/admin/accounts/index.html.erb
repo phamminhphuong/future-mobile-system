@@ -37,11 +37,11 @@
                 <td><%= acc.email %></td>
                 <td><%= acc.account_type %></td>
                 <td>
-                  <%= link_to  t("edit"), edit_admin_account_url(acc.id) %> |
-                  <%= link_to  t("show"), admin_account_url(acc.id) %>
-                  <% if acc.account_type == Settings.account_type.admin %>
-                  <% else %>
-                    | <%= link_to  t("delete"), "#" %>
+                  <%= link_to t("edit"), edit_admin_account_url(acc.id) %> |
+                  <%= link_to t("show"), admin_account_url(acc.id) %>
+                  <% unless acc.account_type == Settings.account_type.admin %>
+                    | <%= link_to  t("delete"), admin_account_url(acc.id), method: :delete,
+                      data: {confirm: t("you_sure")} %>
                   <% end %>
                 </td>
               </tr>
