@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get  "/contact", to: "static_pages#contact"
   get  "/signup", to: "accounts#new"
   post "/signup", to: "accounts#create"
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
   resources :accounts
   namespace :admin do
     get "dasboard/index", to: "dasboard#index"

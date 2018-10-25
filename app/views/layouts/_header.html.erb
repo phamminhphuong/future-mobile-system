@@ -4,13 +4,16 @@
       <div class="container">
         <div class="row">
           <div class="yCmsContentSlot col-xs-12 col-md-5 header--segment-left">
-            <marquee><%= t "welcome" %></marquee>
+            <marquee>
+              <%= t "welcome" %>
+            </marquee>
           </div>
           <div class="yCmsContentSlot col-md-7 hidden-xs hidden-sm header--segment-right">
             <div class="header--segment-item pull-right pop-hover js-pop-hover">
               <a href="javascript:;" class="pop-hover-title" data-target="#" data-toggle="dropdown" role="button"
                 aria-haspopup="true" aria-expanded="false" class="pop-hover-title">
-                <%= image_tag "4.png" %>  <%= t "guest" %>
+                <%= image_tag "4.png" %>
+                <%= t "guest" %>
               </a>
               <div class="pop-hover-open">
                 <ul>
@@ -18,17 +21,14 @@
                     <%= image_tag "4.png" %>
                     <div class="hotline_group--right">
                       <div>Hotline</div>
-                      <span class="highlight-color"><%= t "guest" %></span>
+                      <span class="highlight-color">
+                        <%= t "guest" %></span>
                     </div>
                   </li>
                 </ul>
                 <ul>
-                  <li>
-                    <a href="cau-hoi-thuong-gap.html"><%= t "guest" %></a>
-                  </li>
-                  <li>
-                    <a href="lien-he.html"><%= t "guest" %></a>
-                  </li>
+                  <li> <%= t "guest" %></li>
+                  <li> <%= t "guest" %></li>
                 </ul>
               </div>
             </div>
@@ -74,22 +74,24 @@
             <div class="site-search">
               <span class="adr-icon icon-search-complete visible-xs visible-sm"></span>
               <div class="ui-front">
-                <form name="search_form_SearchBox" method="post" action="https://shopbanhangmypham.000webhostapp.com/public/tim-kiem"
+                <form name="search_form_SearchBox" method="post" action="#"
                   class="js-search-form">
-                  <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
+                  <input type="hidden" name="_token" value="#">
                   <div class="input-group" style="border: solid 2px #ed1d24">
                     <div class="input-group-btn no-padding hidden-xs hidden-sm">
                       <div class="dropdown js-select-category">
                         <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true"
                           aria-expanded="false">
-                          <span class="category-selected"><%= t "future_mobile" %></span>
+                          <span class="category-selected">
+                            <%= t "future_mobile" %></span>
                         </a>
                       </div>
                     </div>
-                    <input type="text" title="Vui lòng không để trống" id="js-site-search-input" class="form-control js-site-search-input"
-                      name="timkiem" value="" maxlength="100" placeholder="Tìm sản phẩm bạn mong muốn">
+                    <input type="text" id="js-site-search-input" class="form-control js-site-search-input"
+                      value="" maxlength="100" placeholder="<%= t "find_product" %>">
                     <span class="input-group-btn btn-find-group">
-                      <button class="btn btn-link" type="submit" style="background: #ed1d24; color: #ffffff;"><%= t "search" %></button>
+                      <button class="btn btn-link" type="submit" style="background: #ed1d24; color: #ffffff;">
+                        <%= t "search" %></button>
                     </span>
                   </div>
                 </form>
@@ -111,38 +113,56 @@
               <div class="js-user--info">
                 <div class="user-group--info">
                   <div class="pop-hover js-pop-hover">
-                    <a href="javascript:void(0);" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  <% if logged_in? %>
+                    <a onclick="myFunction1()" data-toggle="dropdown" role="button" aria-haspopup="true"
                       aria-expanded="false" class="pop-hover-title">
-                      <span><%= t "login_register" %></span>
+                      <span>
+                        <%= t "my_acc" %></span>
                       <span class="adr-icon dropdownlist-header"></span>
                     </a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" id="dropmenu1">
                       <ul>
                         <li>
-                          <a href="dangnhap.html" class="btn btn-login js-sign-in__popup">
-                            <%= t "login" %>
-                          </a>
+                          <%= link_to t("profile"), edit_account_path(current_account) %>
                         </li>
                         <li>
-                          <span><%= t "not_account" %></span>
+                          <%= link_to t("logout"), logout_path, method: :delete %>
                         </li>
+                      </ul>
+                    </div>
+                  <% else %>
+                    <a onclick="myFunction()" data-toggle="dropdown" role="button" aria-haspopup="true"
+                      aria-expanded="false" class="pop-hover-title">
+                      <span>
+                        <%= t("login_register") %></span>
+                      <span class="adr-icon dropdownlist-header"></span>
+                    </a>
+                    <div class="dropdown-menu" id="dropmenu">
+                      <ul>
+                        <li>
+                          <%= link_to t("login"), login_path %>
+                        </li>
+                        <li><span>
+                            <%= t "not_account" %></span></li>
                         <li>
                           <%= link_to t("new_account"), signup_path %>
                         </li>
                       </ul>
                     </div>
+                  <% end %>
                   </div>
                 </div>
               </div>
             </li>
             <li class="col-sm-12 col-md-2">
               <div class="nav-cart">
-                <a href="gio-hang.html" class="mini-cart-link js-mini-cart-link" data-mini-cart-url="/cart/rollover"
-                  data-mini-cart-refresh-url="/cart/miniCart/SUBTOTAL" data-mini-cart-name="Cart"
-                  data-mini-cart-empty-name="Empty Cart" data-mini-cart-items-text="Items">
+                <a href="#" class="mini-cart-link js-mini-cart-link" data-mini-cart-url="#"
+                  data-mini-cart-refresh-url="#" data-mini-cart-name="#"
+                  data-mini-cart-empty-name="<%= t "empty_cart" %>" data-mini-cart-items-text="Items">
                   <div class="mini-cart-icon"><span class="adr-icon icon-cart hidden-xs hidden-sm"></span>
                     <span class="adr-icon icon-cart-mobile visible-xs visible-sm"></span>
-                    <span class="mini-cart-price js-cart-total-unit"><%= t "zero" %></span>
+                    <span class="mini-cart-price js-cart-total-unit">
+                      <%= t "zero" %></span>
                   </div>
                 </a>
               </div>
