@@ -11,3 +11,12 @@ client:
   maximum3: 11
 account_type:
   admin: "admin"
+curr_unit:
+  price1: 2.000 USD
+  price2: 1.800 USD
+  price3: 1.800 USD
+  price4: 1.600 USD
+  price5: 1.600 USD
+  price6: 1.400 USD
+  price7: 1.000 USD
+  price8: 800 USD

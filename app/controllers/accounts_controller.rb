@@ -5,9 +5,9 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account.new account_params
-    if @user.save
+    if @account.save
       flash[:success] = t "sign_success"
-      redirect_to @account
+      redirect_to root_url
     else
       render :new
     end
@@ -16,7 +16,7 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:account).permit :fullname, :email, :password,
-      :password_confirmation, :phone, :address, :image
+    params.require(:account).permit(:fullname, :email, :password,
+      :password_confirmation, :phone, :address).merge(account_type: :member)
   end
 end

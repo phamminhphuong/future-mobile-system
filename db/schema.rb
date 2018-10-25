@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_10_21_154246) do
     t.string "fullname"
     t.string "address"
     t.string "phone"
-    t.integer "account_type"
+    t.integer "account_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
