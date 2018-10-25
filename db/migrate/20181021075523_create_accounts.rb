@@ -6,7 +6,7 @@ class CreateAccounts < ActiveRecord::Migration[5.2]
       t.string :fullname
       t.string :address
       t.string :phone
-      t.string :image
+      t.integer :account_type
 
       t.timestamps
     end
