@@ -3,12 +3,38 @@
 <% provide :action, t("show") %>
 <div>
   <dl class="dl-horizontal">
-    <dt><%= t "name" %></dt>
-    <dd>user</dd>
+    <dt><%= t "fullname" %></dt>
+  </dl>
+  <dl class="dl-horizontal">
+    <dd><%= @account.fullname %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "address" %></dt>
+  </dl>
+  <dl class="dl-horizontal">
+    <dd><%= @account.address %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "phone" %></dt>
+  </dl>
+  <dl class="dl-horizontal">
+    <dd><%= @account.phone %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "email" %></dt>
+  </dl>
+  <dl class="dl-horizontal">
+    <dd><%= @account.email %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "account_type" %></dt>
+  </dl>
+  <dl class="dl-horizontal">
+    <dd><%= @account.account_type %></dd>
   </dl>
 </div>
 <br><br>
 <div class="box-footer">
-  <%= link_to t("edit"), "#" %> |
-  <%= link_to t("list"), "#" %>
+  <%= link_to t("edit"), edit_admin_account_url(@account.id) %> |
+  <%= link_to t("list"), admin_accounts_url %>
 </div>
