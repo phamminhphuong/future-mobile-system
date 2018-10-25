@@ -9,3 +9,5 @@ client:
   maximum2: 255
   maximum3: 15
   maximum3: 11
+account_type:
+  admin: "admin"

@@ -12,9 +12,6 @@
                 <%= t "fullname" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
-                <%= t "image" %>
-              </th>
-              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "address" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
@@ -24,7 +21,7 @@
                 <%= t "email" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
-                <%= t "account_id" %>
+                <%= t "account_type" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "action" %>
@@ -32,17 +29,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr role="row" class="odd">
-              <td class="sorting_1">Gecko</td>
-              <td>Firefox 1.0</td>
-              <td>Win 98+ / OSX.2+</td>
-              <td>1.7</td>
-              <td>A</td>
-              <td>1.7</td>
-              <td>
-                <%= link_to  t("edit"), "#" %> | <%= link_to  t("Show"), "#" %> | <%= link_to  t("Delete"), "#" %>
-              </td>
-            </tr>
+            <% @account.each do |acc| %>
+              <tr role="row" class="odd">
+                <td class="sorting_1"><%= acc.fullname %></td>
+                <td><%= acc.address %></td>
+                <td><%= acc.phone %></td>
+                <td><%= acc.email %></td>
+                <td><%= acc.account_type %></td>
+                <td>
+                  <%= link_to  t("edit"), edit_admin_account_url(acc.id) %> |
+                  <%= link_to  t("show"), admin_account_url(acc.id) %>
+                  <% if acc.account_type == Settings.account_type.admin %>
+                  <% else %>
+                    | <%= link_to  t("delete"), "#" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -50,5 +53,5 @@
   </div>
 </div>
 <div class="box-footer">
-  <%= link_to t("create"), "#" %>
+  <%= link_to t("create"), new_admin_account_url %>
 </div>
