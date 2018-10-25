@@ -3,6 +3,6 @@
 <% provide :action, t("edit") %>
 <%= render "admin/accounts/form" %>
 <div class="box-footer">
-  <%= link_to t("list"), admin_account_url(@account.id) %> |
-  <%= link_to t("show"), admin_account_url %>
+  <%= link_to t("list"), admin_accounts_url %> |
+  <%= link_to t("show"), admin_account_url(@account.id) %>
 </div>

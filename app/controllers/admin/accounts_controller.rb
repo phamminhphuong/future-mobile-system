@@ -2,7 +2,7 @@ class Admin::AccountsController < Admin::BaseController
   before_action :load_account, except: %i(new index create)
 
   def index
-    @account = Account.select_account
+    @accounts = Account.select_account
   end
 
   def new
