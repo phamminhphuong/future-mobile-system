@@ -32,6 +32,15 @@ class Admin::ManufacturersController < Admin::BaseController
     end
  end
 
+  def destroy
+    if @manufacturer.destroy
+      flash[:success] = t "manufacturer_delete"
+    else
+      flash[:danger] = t "cannot_delete_manufacturer"
+    end
+    redirect_to admin_manufacturers_url
+  end
+
   private
 
   def manufacturer_params
