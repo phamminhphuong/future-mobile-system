@@ -2,7 +2,6 @@
 //= require activestorage
 //= require jquery
 //= require bootstrap
-//= require admin/jquery.min
 //= require admin/bootstrap.min
 //= require admin/adminlte
 //= require admin/jquery.dataTables.min

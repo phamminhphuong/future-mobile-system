@@ -130,3 +130,6 @@ en:
   you_sure: "You sure?"
   cannot_remove_account: "Cannot remove account"
   not_category: "not category"
+  category_delete: "Category delete"
+  cannot_delete_category: "Cannot delete category"
+  welcome_future: "Welcome to future mobile website management"
