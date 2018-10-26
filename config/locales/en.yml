@@ -134,3 +134,5 @@ en:
   cannot_delete_category: "Cannot delete category"
   welcome_future: "Welcome to future mobile website management"
   not_manufacturer: "Not manufacturer"
+  manufacturer_delete: "Manufacturer deleted"
+  cannot_delete_manufacturer: "Cannot delete manufacturer"
