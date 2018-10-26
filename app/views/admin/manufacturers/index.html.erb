@@ -17,12 +17,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr role="row" class="odd">
-               <td class="sorting_1">Gecko</td>
-              <td>
-                <%= link_to  t("edit"), "#" %> | <%= link_to  t("Show"), "#" %> | <%= link_to  t("Delete"), "#" %>
-              </td>
-            </tr>
+            <% @manufacturers.each do |m| %>
+              <tr role="row" class="odd">
+                <td class="sorting_1"><%= m.name %></td>
+                <td>
+                  <%= link_to t("edit"), edit_admin_manufacturer_url(m.id) %> |
+                  <%= link_to t("Show"), admin_manufacturer_url(m.id) %> |
+                  <%= link_to t("Delete"), admin_manufacturer_url(m.id), method: :delete,
+                    data: {confirm: t("you_sure")} %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -30,5 +35,5 @@
   </div>
 </div>
 <div class="box-footer">
-  <%= link_to t("create"), "#" %>
+  <%= link_to t("create"), new_admin_manufacturer_url %>
 </div>
