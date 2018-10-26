@@ -1,8 +1,8 @@
 <% provide :title, t("admin_manufacturer") %>
 <% provide :db, t("manufacturer") %>
 <% provide :action, t("edit") %>
-<%= render "admin/manufacturer/form" %>
+<%= render "admin/manufacturers/form" %>
 <div class="box-footer">
-  <%= link_to t("list"), "#" %> |
-  <%= link_to t("show"), "#" %>
+  <%= link_to t("list"), admin_manufacturers_url %> |
+  <%= link_to t("show"), admin_manufacturer_url(@manufacturer.id) %>
 </div>

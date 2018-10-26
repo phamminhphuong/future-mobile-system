@@ -28,7 +28,7 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:success] = t "successfully_update"
       redirect_to admin_categories_url
     else
-      render :new
+      render :edit
     end
   end
 
