@@ -1,6 +1,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery
+//= require custom.js
 //= require bootstrap
 //= require admin/bootstrap.min
 //= require admin/adminlte

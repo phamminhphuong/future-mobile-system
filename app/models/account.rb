@@ -13,7 +13,20 @@ class Account < ApplicationRecord
   validates :email, presence: true, length: {maximum: Settings.client.maximum2},
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
-  validates :password, presence: true, length: {minimum: Settings.client.minimum}
-  scope :select_account, -> {select :id, :fullname, :address, :phone, :email, :account_type}
+  validates :password, presence: true,
+    length: {minimum: Settings.client.minimum}, allow_nil: true
+  scope :select_account, -> {select(:id, :fullname, :address, :phone, :email, :account_type)}
   has_secure_password
+
+  class << self
+    def digest string
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+        BCrypt::Engine.cost
+      BCrypt::Password.create string, cost: cost
+    end
+
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
+  end
 end

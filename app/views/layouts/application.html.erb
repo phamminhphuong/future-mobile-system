@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>
-    <%= t "future_mobile_system" %>
+    <%= yield :title %> | <%= t "future_mobile_system" %>
   </title>
   <%= render "layouts/rails_default" %>
 </head>
@@ -10,9 +10,6 @@
   <main id="page" data-currency-iso-code="VND">
     <a href="#skip-to-content" class="skiptocontent" data-role="none"></a>
     <button class="bg-overlay" type="button"></button>
-    <div class="slider__logo hidden-xs hidden-sm">
-      <div class="content"></div>
-    </div>
     <%= render "layouts/header" %>
     <div id="content" class="clearfix">
       <a id="skip-to-content"></a>
@@ -27,10 +24,12 @@
                   <%= render "layouts/sidebar" %>
                 </div>
               </div>
-              <% flash.each do |message_type, message| %>
-                <div class="alert alert-<%= message_type %>"><%= message %></div>
-              <% end %>
-             <%= yield %>
+              <div class="col-sm-12 col-md-9 col-lg-10 product-list__wrapper">
+                <% flash.each do |message_type, message| %>
+                  <div class="alert alert-<%= message_type %>"><%= message %></div>
+                <% end %>
+                <%= yield %>
+              </div>
             </div>
           </div>
         </div>
