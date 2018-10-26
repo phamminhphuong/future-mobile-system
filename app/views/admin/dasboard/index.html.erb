@@ -5,7 +5,7 @@
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h3>150</h3>
+          <h3><%= @account_count %></h3>
           <p>
             <%= t "account" %>
           </p>
@@ -13,31 +13,31 @@
         <div class="icon">
           <i class="fa fa-user-circle" aria-hidden="true"></i>
         </div>
-        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
-        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <%= link_to admin_accounts_url, html_options = {class: "small-box-footer"} do %>
+          <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
         <% end %>
       </div>
     </div>
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>53<sup style="font-size: 20px">%</sup></h3>
+          <h3><%= @manufacturer_count %><sup style="font-size: 20px"></sup></h3>
           <p>
-            <%= t "nanufacturer" %>
+            <%= t "manufacturer" %>
           </p>
         </div>
         <div class="icon">
           <i class="fa fa-building" aria-hidden="true"></i>
         </div>
-        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
-        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <%= link_to admin_manufacturers_url, html_options = {class: "small-box-footer"} do %>
+          <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
         <% end %>
       </div>
     </div>
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h3>44</h3>
+          <h3><%= @category_count %></h3>
           <p>
             <%= t "category" %>
           </p>
@@ -45,15 +45,15 @@
         <div class="icon">
           <i class="fa fa-list-alt" aria-hidden="true"></i>
         </div>
-        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
-        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <%= link_to admin_categories_url, html_options = {class: "small-box-footer"} do %>
+          <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
         <% end %>
       </div>
     </div>
     <div class="col-lg-3 col-xs-6">
       <div class="small-box bg-red">
         <div class="inner">
-          <h3>65</h3>
+          <h3><%= @product_count %></h3>
           <p>
             <%= t "product" %>
           </p>
@@ -61,8 +61,8 @@
         <div class="icon">
           <i class="fa fa-product-hunt" aria-hidden="true"></i>
         </div>
-        <%= link_to "#", html_options = {class: "small-box-footer"} do %>
-        <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
+        <%= link_to admin_products_url, html_options = {class: "small-box-footer"} do %>
+          <%= t("more_info") %> <i class="fa fa-arrow-circle-right"></i>
         <% end %>
       </div>
     </div>
