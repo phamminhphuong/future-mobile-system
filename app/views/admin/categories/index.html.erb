@@ -1,5 +1,5 @@
 <% provide :title, ("admin_category") %>
-<% provide :db, t("csategory") %>
+<% provide :db, t("category") %>
 <% provide :action, t("list") %>
 <div class="box-body">
   <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -17,12 +17,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr role="row" class="odd">
-              <td class="sorting_1">Gecko</td>
-              <td>
-                <%= link_to  t("edit"), "#" %> | <%= link_to  t("Show"), "#" %> | <%= link_to  t("Delete"), "#" %>
-              </td>
-            </tr>
+            <% @categories.each do |c| %>
+              <tr role="row" class="odd">
+                <td class="sorting_1"><%= c.name %></td>
+                <td>
+                  <%= link_to t("edit"), edit_admin_category_url(c.id) %> |
+                  <%= link_to t("Show"), admin_category_url(c.id) %> |
+                  <%= link_to t("Delete"), admin_category_url(c.id), method: :delete,
+                    data: {confirm: t("you_sure")} %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -30,5 +35,5 @@
   </div>
 </div>
 <div class="box-footer">
-  <%= link_to t("create"), "#" %>
+  <%= link_to t("create"), new_admin_category_url %>
 </div>

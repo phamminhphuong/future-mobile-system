@@ -14,6 +14,6 @@ class Account < ApplicationRecord
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
   validates :password, presence: true, length: {minimum: Settings.client.minimum}
-  scope :select_account, -> {select(:id, :fullname, :address, :phone, :email, :account_type)}
+  scope :select_account, -> {select :id, :fullname, :address, :phone, :email, :account_type}
   has_secure_password
 end

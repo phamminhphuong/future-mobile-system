@@ -1,7 +1,7 @@
 <% provide :title, ("admin_category") %>
 <% provide :db, t("category") %>
 <% provide :action, t("create") %>
-<%= render "admin/categorys/form" %>
+<%= render "admin/categories/form" %>
 <div class="box-footer">
-   <%= link_to t("list"), "#" %>
+   <%= link_to t("list"), admin_categories_url %>
 </div>
