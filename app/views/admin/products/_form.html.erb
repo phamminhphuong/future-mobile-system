@@ -1,45 +1,47 @@
-<form role="form">
+<%= form_for [:admin, @product], multipart: true do |f| %>
   <div class="box-body">
+    <%= render "admin/shared/error_messages", object: @product %>
     <div class="form-group">
-      <label for="name"><%= t "name" %></label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
     <div class="form-group">
-      <label for="quantity"><%= t "quantity" %></label>
-      <input type="number" class="form-control" value="0" id="quantity">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, min: Settings.size.min_quantity, class: "form-control" %>
     </div>
     <div class="form-group">
-      <label for="price"><%= t "price" %></label>
-      <input type="text" class="form-control" value="0" id="price">
+      <%= f.label :price %>
+      <%= f.number_field :price, min: Settings.size.min_price, class: "form-control" %>
     </div>
     <div class="form-group">
-      <label for="hot"><%= t "hot" %></label>
-      <input type="number" class="form-control" value="0" id="hot">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control" %>
     </div>
     <div class="form-group">
-      <label for="description"><%= t "description" %></label>
-      <input type="text" class="form-control" id="description" placeholder="Enter description">
+      <%= f.label :hot %>
+      <%= f.number_field :hot, min: Settings.size.min_hot, max: Settings.size.max_hot, class: "form-control" %>
     </div>
     <div class="form-group">
-      <label for="category"><%= t "category" %></label>
-      <select class="form-control">
-        <option value="1"><%= t "iphone" %></option>
-        <option value="0"><%= t "samsung" %></option>
-      </select>
-    </div>
-     <div class="form-group">
-      <label for="manuracturerer"><%= t "manufacturer" %></label>
-      <select class="form-control">
-        <option value="1"><%= t "iphone" %></option>
-        <option value="0"><%= t "samsung" %></option>
-      </select>
+      <%= f.label :category_id %>
+      <%= f.select :category_id, @categories.collect {|c| [c.name, c.id]},
+        {}, class: "form-control" %>
     </div>
     <div class="form-group">
-      <label for="Image"><%= t "image" %></label>
-      <input type="file" name="image" class="form-control">
+      <%= f.label :manufacturer_id %>
+      <%= f.select :manufacturer_id, @manufacturers.collect {|pr| [pr.name, pr.id]},
+        {}, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.fields_for :images do |p| %>
+        <div class="field">
+          <%= p.label :image_link %><br>
+          <%= p.file_field :image_link, multiple: true, name: "images[image_link][]", class: "upload-image",
+            accept: "image/jpeg,image/gif,image/png" %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="box-footer">
-    <button type="submit" class="btn btn-primary"><%= t "submit" %></button>
+    <%= f.submit t("submit"), class: "btn btn-primary", id: "upload_image" %>
   </div>
-</form>
+<% end %>
