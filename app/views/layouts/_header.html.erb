@@ -65,7 +65,7 @@
             <div class="yCmsContentSlot js-site-logo">
               <div class="banner__component banner banner__component--logo">
                 <a href="#">
-                  <%= image_tag "logo.jpg" %>
+                  <%= link_to image_tag("logo.jpg"), root_path %>
                 </a>
               </div>
             </div>
@@ -156,6 +156,7 @@
             </li>
             <li class="col-sm-12 col-md-2">
               <div class="nav-cart">
+                <%= image_tag "8.png" %>
                 <a href="#" class="mini-cart-link js-mini-cart-link" data-mini-cart-url="#"
                   data-mini-cart-refresh-url="#" data-mini-cart-name="#"
                   data-mini-cart-empty-name="<%= t "empty_cart" %>" data-mini-cart-items-text="Items">

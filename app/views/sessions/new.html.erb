@@ -1,6 +1,6 @@
 <% provide :title, t("login") %>
+<div class="col-lg-12 col-md-12 col-sx-12">
 <h1 class="text-center"><%= t "login" %></h1>
-<div class="col-lg-10 col-md-10 col-sx-10">
   <%= form_for :session, url: login_path do |f| %>
   <%= f.label :email %><br>
   <%= f.email_field :email, class: "form-control" %><br>

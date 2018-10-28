@@ -3,6 +3,9 @@ size:
   length_name_category: 100
   length_name: 255
   length_name_description: 2000
+  size_image: [80, 100]
+  size_page: 8
+  limit: 10
 client:
   minimum: 6
   maximum1: 50
@@ -12,11 +15,4 @@ client:
 account_type:
   admin: "admin"
 curr_unit:
-  price1: 2.000 USD
-  price2: 1.800 USD
-  price3: 1.800 USD
-  price4: 1.600 USD
-  price5: 1.600 USD
-  price6: 1.400 USD
-  price7: 1.000 USD
-  price8: 800 USD
+  price: USD

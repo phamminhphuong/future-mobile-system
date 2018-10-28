@@ -3,4 +3,5 @@ class Category < ApplicationRecord
   validates :name, presence: true,
     length: {maximum: Settings.size.length_name_category}
   scope :select_category, -> {select :id, :name}
+  scope :create_desc, -> {order created_at: :desc}
 end

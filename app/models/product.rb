@@ -7,4 +7,5 @@ class Product < ApplicationRecord
   validates :description, presence: true,
     length: {maximum: Settings.size.length_name_description}
   validates :hot, presence: true, numericality: true
+  scope :show_product, ->(id){where category_id: id}
 end
