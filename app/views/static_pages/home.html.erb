@@ -15,139 +15,34 @@
 </div>
 <div class="product-list__container">
   <div class="row">
+    <% @products.each do |pro|%>
     <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
       <div class="product-item__placeholder hidden-sm hidden-xs"></div>
       <div class="product-item">
         <form action="#" method="post">
-          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
-          <input type="hidden" name="productId" value="1">
-          <input type="hidden" name="quantity" value="1">
           <div class="product-item__container">
-            <a class="product-item__thumbnail " href="chi-tiet-san-pham/1.html">
+            <div class="product-item__thumbnail">
               <div style="width:200px;height:200px">
-                <%= image_tag "anh1.jpg" %>
+                <%= link_to pro do %>
+                 <%= pro.name %>
+                <% end %>
               </div>
-            </a>
-            <div class="product-item__info">
-              <a class="product-item__info-title" href="chi-tiet-san-pham/1.html">
-                <%= t "iphonex" %>
-              </a>
+            </div>
+            <div class="text-center">
+              <%= pro.name %>
+            </div>
+            <div class="product-item__info text-center">
               <div class="product-item__info-price">
                 <span class="product-item__info-price-sale" style="padding-left:20px">
-                  <%= Settings.curr_unit.price2 %></span>
-                <span class="product-item__info-price-original">
-                  <%= Settings.curr_unit.price1 %></span>
+                  <%= pro.price %>
+                  <%= Settings.curr_unit.price %></span>
               </div>
-              <div style="padding: 15px">
-                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
-                  <%= t "add_to_card" %>
-                </button>
-              </div>
+              <%= link_to t("add_to_card"), card_path, class: "btn btn-primary" %>
             </div>
           </div>
         </form>
       </div>
     </div>
-    <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
-      <div class="product-item__placeholder hidden-sm hidden-xs"></div>
-      <div class="product-item">
-        <form action="https://shopbanhangmypham.000webhostapp.com/public/gio-hang" method="post">
-          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
-          <input type="hidden" name="productId" value="2">
-          <input type="hidden" name="quantity" value="1">
-          <div class="product-item__container">
-            <a class="product-item__thumbnail " href="chi-tiet-san-pham/2.html">
-              <div style="width:200px;height:200px">
-                <%= image_tag "anh2.jpg" %>
-              </div>
-            </a>
-            <div class="product-item__info">
-              <a class="product-item__info-title" href="chi-tiet-san-pham/2.html">
-                <%= t "samsungs9" %>
-              </a>
-              <div class="product-item__info-price">
-                <span class="product-item__info-price-sale" style="padding-left:20px">
-                  <%= Settings.curr_unit.price4 %></span>
-                <span class="product-item__info-price-original">
-                  <%= Settings.curr_unit.price3 %></span>
-              </div>
-              <div style="padding: 15px">
-                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
-                  <%= t "add_to_card" %>
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
-      <div class="product-item__placeholder hidden-sm hidden-xs"></div>
-      <div class="product-item">
-        <form action="#" method="post">
-          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
-          <input type="hidden" name="productId" value="2">
-          <input type="hidden" name="quantity" value="1">
-          <div class="product-item__container">
-            <a class="product-item__thumbnail " href="chi-tiet-san-pham/2.html">
-              <div style="width:200px;height:200px">
-                <%= image_tag "anh4.jpg" %>
-              </div>
-            </a>
-            <div class="product-item__info">
-              <a class="product-item__info-title" href="chi-tiet-san-pham/2.html">
-                <%= t "xiaomi8" %>
-              </a>
-              <div class="product-item__info-price">
-                <span class="product-item__info-price-sale" style="padding-left:20px">
-                  <%= Settings.curr_unit.price6 %></span>
-                <span class="product-item__info-price-original">
-                  <%= Settings.curr_unit.price5 %></span>
-              </div>
-              <div style="padding: 15px">
-                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
-                  <%= t "add_to_card" %>
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
-      <div class="product-item__placeholder hidden-sm hidden-xs"></div>
-      <div class="product-item">
-        <form action="#" method="post">
-          <input type="hidden" name="_token" value="wOkZIs3bZ8dsOMI4W6h9LUPfUvFDLQ72ixliSb1e">
-          <input type="hidden" name="productId" value="2">
-          <input type="hidden" name="quantity" value="1">
-          <div class="product-item__container">
-            <a class="product-item__thumbnail " href="chi-tiet-san-pham/2.html">
-              <div style="width:200px;height:200px">
-                <%= image_tag "anh3.jpg" %>
-              </div>
-            </a>
-            <div class="product-item__info">
-              <a class="product-item__info-title" href="chi-tiet-san-pham/2.html">
-                <%= t "oppos7" %>
-              </a>
-              <div class="product-item__info-price">
-                <span class="product-item__info-price-sale" style="padding-left:20px">
-                  <%= Settings.curr_unit.price8 %></span>
-                <span class="product-item__info-price-original">
-                  <%= Settings.curr_unit.price7 %></span>
-              </div>
-              <div style="padding: 15px">
-                <button type="submit" class="btn btn-block btn-primary btnAddToCart">
-                  <%= t "add_to_card" %>
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-
     <div id="addToCartTitle" class="display-none">
       <div class="add-to-cart-header">
         <div class="headline">
@@ -156,6 +51,10 @@
         </div>
       </div>
     </div>
+    <% end %>
     <div class="clearfix"></div>
+    <div class="text-right">
+      <%= paginate @products %>
+    </div>
   </div>
 </div>

@@ -5,12 +5,15 @@
     <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
       <div class="product-item__placeholder hidden-sm hidden-xs"></div>
       <div class="product-item">
+        <form action="#" method="post">
           <div class="product-item__container">
-            <a class="product-item__thumbnail">
+            <div class="product-item__thumbnail">
               <div style="width:200px;height:200px">
-                <%= pro.name %>
+                <%= link_to pro do %>
+                   <%= pro.name %>
+                  <% end %>
               </div>
-            </a>
+            </div>
             <div class="text-center">
               <%= pro.name %>
             </div>
@@ -20,9 +23,7 @@
                   <%= pro.price %>
                   <%= Settings.curr_unit.price %></span>
               </div>
-              <button type="submit" class="btn btn-block btn-primary btnAddToCart">
-                <%= t "add_to_card" %>
-              </button>
+              <%= link_to t("add_to_card"), card_path, class: "btn btn-primary" %>
             </div>
           </div>
       </div>
@@ -37,8 +38,8 @@
     </div>
     <% end %>
     <div class="clearfix"></div>
+    <div class="text-right">
+      <%= paginate @products %>
+    </div>
   </div>
-   <div class="text-right">
-    <%= paginate @products %>
-   </div>
 </div>

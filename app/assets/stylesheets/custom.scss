@@ -33,6 +33,7 @@ input {
     color: $state-danger-text;
   }
 }
+
 .main-footer{
   height:50px
 }
@@ -49,4 +50,14 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+.style_image_card {
+  width: 80px;
+  height: 80px;
+}
+
+.style_image_hot {
+  width: 110px;
+  height: 130px;
 }
