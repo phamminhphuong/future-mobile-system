@@ -3,27 +3,13 @@
     <div class="section__breadcrumb section__breadcrumb--full">
       <div class="container">
         <ol id="header__breadcrumb" class="header__breadcrumb breadcrumb">
-          <li>
-            <%= link_to t("home"), "#" %>
-          </li>
-          <li>
-            <%= link_to t("iphone"), "#" %>
-          </li>
-          <li>
-            <%= link_to t("samsung"), "#" %>
-          </li>
-          <li>
-            <%= link_to t("oppo"), "#" %>
-          </li>
-          <li>
-            <%= link_to t("sony"), "#" %>
-          </li>
-          <li>
-            <%= link_to t("xiaomi"), "#" %>
-          </li>
-          <li>
-            <%= link_to t("nokia"), "#" %>
-          </li>
+          <% @categories.each do |cate| %>
+            <li>
+              <%= link_to cate do %>
+                <%= cate.name %>
+                <% end %>
+            </li>
+          <% end %>
         </ol>
       </div>
     </div>
