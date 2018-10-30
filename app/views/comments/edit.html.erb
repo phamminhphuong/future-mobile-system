@@ -1,0 +1,12 @@
+<% provide :title, t("edit_comment") %>
+<h1 class="text-center"><%= t "edit_comment" %></h1>
+<%= form_for [@product, @comment] do |f|   %>
+  <div class="col-sm-10">
+    <div class="form-group">
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <%= f.submit t("comment"), class: "btn btn-primary" %>
+  </div>
+<% end %>

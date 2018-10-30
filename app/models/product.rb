@@ -9,6 +9,7 @@ class Product < ApplicationRecord
   validates :description, presence: true,
     length: {maximum: Settings.size.length_name_description}
   validates :hot, presence: true, numericality: true
+
   scope :show_product, ->(id){where category_id: id}
   scope :show_product_desc, -> {order created_at: :desc}
   scope :show_product_hot_desc, -> {order hot: :desc}
@@ -19,6 +20,7 @@ class Product < ApplicationRecord
   scope :show_detail, -> (id){where id: id}
   scope :select_products, -> {select :id, :name, :quantity, :price,
     :description, :hot, :category_id, :manufacturer_id}
+  scope :show_image, -> (id){where product_id: id}
 
   private
 
