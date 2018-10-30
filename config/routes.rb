@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  get "/card", to: "cards#show"
   resources :accounts
   resources :categories
+  resources :products
   namespace :admin do
     get "dasboard/index", to: "dasboard#index"
     resources :accounts

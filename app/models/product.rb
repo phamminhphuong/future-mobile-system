@@ -13,4 +13,7 @@ class Product < ApplicationRecord
   scope :select_category, -> {select :id, :name}
   scope :select_product, -> {select :id, :name, :quantity, :price, :description,
     :hot, :category_id, :manufacturer_id}
+  scope :show_detail, -> (id){where id: id}
+  scope :select_products, -> {select :id, :name, :quantity, :price,
+    :description, :hot, :category_id, :manufacturer_id}
 end
