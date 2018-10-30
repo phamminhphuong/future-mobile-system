@@ -1,22 +1,17 @@
 <footer>
   <div class="container">
     <div class="row">
-      <div class="footer__top">
-        <div class="footer__nav-container" style="width:1224px">
-          <div class="footer__nav-list col-md-3" style="width:300px;padding-left:20px">
+      <div class="footer__top" id="footer-top">
+        <div class="footer__nav-container">
+          <div class="col-md-4" id="footer-ative">
             <div class="title">
               <span class="nav-click">
                 <i class="nav-arrow"></i>
-              </span><%= t "future_mobile" %></div>
+              </span><%= t "future_mobile_f" %>
+            </div>
             <ul class="footer__nav-links">
               <li class="footer__link">
-                <a href="gioi-thieu.html" rel="nofollow"><%= t "introduce" %></a>
-              </li>
-              <li class="footer__link">
-                <a href="gio-hang.html" rel="nofollow" target="_blank"><%=t "card" %></a>
-              </li>
-              <li class="footer__link">
-                <a href="lien-he.html" rel="nofollow"><%= t "contact_with_us" %></a>
+                <%= link_to t("introduce"), introduct_url %>
               </li>
             </ul>
             <div class="title link-section hidden-xs hidden-sm">
@@ -25,77 +20,72 @@
               </span>
             </div>
           </div>
-          <div class="footer__nav-list col-md-3" style="width:300px;padding-left:20px">
+          <div class="col-md-4">
             <div class="title">
               <span class="nav-click">
                 <i class="nav-arrow"></i>
-              </span><%= t "take_care" %>
-            </div>
-            <ul class="footer__nav-links">
-              <li class="yCmsComponent footer__link">
-                <a href="cau-hoi-thuong-gap.html" target="_blank" rel="nofollow"><%= t "question" %></a>
-              </li>
-            </ul>
-          </div>
-          <div class="footer__nav-list col-md-3" style="width:300px;padding-left:20px">
-            <div class="title">
-              <span class="nav-click">
-                <i class="nav-arrow"></i>
-              </span><%= t "account" %>
+              </span><%= t "contact" %>
             </div>
             <ul class="footer__nav-links">
               <li class="footer__link">
-                 <%= link_to t("login"), "#" %>
-              </li>
-              <li class="footer__link">
-                <%= link_to t("register"), "#" %>
+                <%= link_to t("contact_future_mobile"), contact_url %>
               </li>
             </ul>
           </div>
-          <!--Footer Social-->
-          <div class="footer__nav-list footer__social--nav col-md-3" style="width:300px;padding-left:20px">
+          <div class="col-md-4">
             <div class="title">
               <span class="nav-click">
                 <i class="nav-arrow"></i>
-              </span><%= t "connect" %></div>
-            <div class="footer__nav-links clearfix hidden-xs hidden-sm">
-              <div class="col-md-12 col-lg-6" style="padding:0">
-              </div>
+              </span><%= t "account_f" %>
             </div>
+            <ul class="footer__nav-links">
+              <li class="footer__link">
+                 <%= link_to t("login"), login_url %>
+              </li>
+              <li class="footer__link">
+                <%= link_to t("register"), signup_url %>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <!--Footer Bottom-->
       <div class="footer__bottom">
         <div class="container">
           <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-3" style="text-align: center;">
-              <img id="logo_thuonghieu" width="120px" height="120px" src="img/logo.jpg" alt="">
+            <div class="col-md-1">
             </div>
-            <div class="col-md-4" style="text-align: center;">
+            <div class="col-md-3">
+               <%= image_tag "chungchi.jpg", id: "image_certificate" %>
+            </div>
+            <div class="col-md-4">
               <h3> <%= t "contact_info" %></h3>
               <p>
-                <span class="tieude">
-                  <i class="fas fa-map-marker"></i> <%= t "address" %>
+                <span class="title">
+                  <i class="fas fa-map-marker"></i>
+                  <%= t "address" %> : <%= t "address_f" %>
                 </span>
               </p>
               <p>
-                <span class="tieude">
-                  <i class="fas fa-envelope-open"></i> <%= t "email" %>
-                  </span>
+                <span class="title">
+                  <i class="fas fa-envelope-open"></i>
+                  <%= t "email" %> : <%= t"email_f" %>
+                </span>
               </p>
               <p>
-                <span class="tieude">
-                  <i class="fas fa-phone-volume"></i> <%= t "phone" %>
+                <span class="title">
+                  <i class="fas fa-phone-volume"></i>
+                  <%= t "phone" %> : <%= t"phone_f" %>
                 </span>
               </p>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-md-2">
+              <h3><%= t "member" %></h3>
+              <h5><%= t "member1" %></h5>
+              <h5><%= t "member2" %></h5>
+            </div>
           </div>
         </div>
       </div>
-      <!--#Footer Bottom-->
     </div>
   </div>
 </footer>
