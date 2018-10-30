@@ -1,0 +1,26 @@
+<div class="sidebar-container">
+  <div class="js-facet section__sidebar ">
+    <div class="facet-group js-facet-group" id="sidebar_secction1">
+      <div class="facet-group-title">
+        <a href="javascript:;">
+          <%= t "new" %></a>
+      </div>
+      <div class="facet-group-content js-facet-form ">
+        <ul class="facet-list js-facet-list facet-list-scroll" id="siderbar-new">
+          <% @product_news.each do |pr| %>
+            <li data-label="BEAUTY CONCEPT">
+              <span class="facet__text">
+                <%= link_to pr do %>
+                  <%= image_tag "#{pr.images.first.image_link}", class: "image_home" %>
+                  <br>
+                  <%= pr.name %>
+                <% end %>
+                <span class="facet__value__count"></span>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
