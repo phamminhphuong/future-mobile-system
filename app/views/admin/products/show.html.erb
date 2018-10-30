@@ -4,11 +4,78 @@
 <div>
   <dl class="dl-horizontal">
     <dt><%= t "name" %></dt>
-    <dd>user</dd>
+    <dd><%= @product.name %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "quantity" %></dt>
+    <dd><%= @product.quantity %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "price" %></dt>
+    <dd><%= @product.price %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "description" %></dt>
+    <dd><%= @product.description %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "hot" %></dt>
+    <dd><%= @product.hot %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "category_id" %></dt>
+    <dd><%= @product.category.name %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "manufacturer_id" %></dt>
+    <dd><%= @product.manufacturer.name %></dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <dt><%= t "image" %></dt>
+    <dd>
+      <div class="row">
+        <% @images.each do |img| %>
+          <div class="col-md-4 div-image">
+            <%= image_tag img.image_link_url, class: "image_show_product" %>
+            <br>
+            <%= link_to t("delete"), admin_image_url(img.id), method: :delete,
+              data: {confirm: t("you_sure")}, class: "delete_image" %>
+          </div>
+        <% end %>
+      </div>
+    </dd>
+  </dl>
+  <dl class="dl-horizontal">
+    <div class="row">
+      <div class="col-md-11">
+        <dt><%= t "comment" %></dt>
+        <dd>
+          <table class="table">
+            <thead>
+              <tr>
+                <th><%= t "account" %></th>
+                <th><%= t "comment" %></th>
+                <th><%= t "action" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @comments.each do |cm| %>
+                <tr>
+                  <td><%= cm.account.fullname %></td>
+                  <td><%= cm.content %></td>
+                  <td><%= link_to t("delete"), admin_comment_url(cm.id), method: :delete,
+                  data: {confirm: t("you_sure")} %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </dd>
+      </div>
+    </div>
   </dl>
 </div>
 <br><br>
 <div class="box-footer">
-  <%= link_to t("edit"), "#" %> |
-  <%= link_to t("list"), "#" %>
+  <%= link_to t("edit"), edit_admin_product_url(@product.id) %> |
+  <%= link_to t("list"), admin_products_url %>
 </div>

@@ -1,5 +1,6 @@
 class Admin::ProductsController < Admin::BaseController
-  before_action :load_product, except: %i(new index create)
+  before_action :load_product, except: %i(new index create show)
+  before_action :load_product_show, only: %i(show)
   before_action :load_category_manufacturer, except: %i(index show destroy)
 
   def index
@@ -26,7 +27,10 @@ class Admin::ProductsController < Admin::BaseController
       render :new
   end
 
-  def show; end
+  def show
+    @images = @product.images.select_image
+    @comments = @product.comments.select_comment
+  end
 
   def edit; end
 
@@ -43,6 +47,15 @@ class Admin::ProductsController < Admin::BaseController
       render :edit
   end
 
+  def destroy
+    if @product.destroy
+      flash[:success] = t "successfully_delete"
+    else
+      flash[:danger] = t "cannot_delete_product"
+    end
+    redirect_to admin_products_url
+  end
+
   private
 
   def product_params
@@ -52,6 +65,14 @@ class Admin::ProductsController < Admin::BaseController
 
   def load_product
     @product = Product.find_by id: params[:id]
+    return if @product.present?
+    flash[:danger] = t "not_product"
+    redirect_to admin_products_url
+  end
+
+  def load_product_show
+    @product = Product.includes(:category, :manufacturer)
+      .find_by id: params[:id]
     return if @product.present?
     flash[:danger] = t "not_product"
     redirect_to admin_products_url
