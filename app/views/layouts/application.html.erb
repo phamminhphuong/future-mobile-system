@@ -10,7 +10,6 @@
   <main id="page" data-currency-iso-code="VND">
     <a href="#skip-to-content" class="skiptocontent" data-role="none"></a>
     <button class="bg-overlay" type="button"></button>
-    
     <%= render "layouts/header" %>
     <div id="content" class="clearfix">
       <a id="skip-to-content"></a>
@@ -21,8 +20,7 @@
             <div class="row">
               <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
                 <div id="sidebar-wrapper" class="js-product-facet">
-                  <!-- main facet search on PLP page -->
-                  <%= render "layouts/sidebar" %>
+                  <%= render "layouts/sidebar_hot" %>
                 </div>
               </div>
               <div class="col-sm-12 col-md-6 col-md-6 col-lg-8 product-list__wrapper">
@@ -33,8 +31,7 @@
               </div>
               <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
                 <div id="sidebar-wrapper" class="js-product-facet">
-                  <!-- main facet search on PLP page -->
-                  <%= render "layouts/sidebar" %>
+                  <%= render "layouts/sidebar_new" %>
                 </div>
               </div>
             </div>

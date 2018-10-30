@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   get "/card", to: "cards#show"
+  get "/search", to: "static_pages#search"
   resources :accounts
   resources :categories
   resources :products

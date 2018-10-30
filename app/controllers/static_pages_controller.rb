@@ -3,8 +3,13 @@ class StaticPagesController < ApplicationController
     @products = Product.select_products
       .page(params[:page])
       .per Settings.size.size_page
-    @details = Product.show_detail(params[:id])
+    @product_count = @products.size
   end
 
   def about; end
+
+  def search
+    @products = Product.search params[:search]
+    @product_search = @products.size
+  end
 end

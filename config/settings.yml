@@ -11,6 +11,8 @@ size:
   min_price: 0
   min_hot: 1
   max_hot: 10
+  count_new: 4
+  count_hot: 4
 client:
   minimum: 6
   maximum1: 50

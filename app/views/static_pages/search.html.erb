@@ -1,0 +1,61 @@
+<% provide :title, t("search") %>
+<div class="product-list__header">
+  <div class="row">
+    <div class="col-md-6 col-lg-7">
+      <h1 class="header__title">
+        <%= t "future_mobile" %>
+      </h1>
+      <span class="header__search-result">
+         <%= t "product_quantity" %> <%= @product_search %> <%= t "products" %>
+      </span>
+      <div class="header__description hidden-xs">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="product-list__container">
+  <div class="row">
+    <% @products.each do |pro|%>
+      <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
+        <div class="product-item__placeholder hidden-sm hidden-xs"></div>
+        <div class="product-item">
+          <form action="#" method="post">
+            <div class="product-item__container">
+              <div class="product-item__thumbnail">
+                <div class="product_show">
+                  <%= link_to pro do %>
+                    <%= pro.name %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="text-center">
+                <%= pro.name %>
+              </div>
+              <div class="product-item__info text-center">
+                <div class="product-item__info-price">
+                  <span class="product-item__info-price-sale">
+                    <%= pro.price %>
+                    <%= Settings.curr_unit.price %>
+                  </span>
+                </div>
+                <%= link_to t("add_to_card"), card_path, class: "btn btn-primary" %>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="addToCartTitle" class="display-none">
+        <div class="add-to-cart-header">
+          <div class="headline">
+            <span class="headline-text">
+              <%= t "shopping_card" %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="clearfix"></div>
+    <div class="text-right">
+    </div>
+  </div>
+</div>
