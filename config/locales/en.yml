@@ -151,3 +151,8 @@ en:
   edit_profile: "Edit profile"
   save: "save changes"
   my_acc: "My account"
+  not_product: "Not product"
+  message_image: "should be less than 5MB"
+  error_image: "Maximum file size is 5MB. Please choose a smaller file."
+  error_image1: "not image"
+  not_image: "No image. You must enter image"

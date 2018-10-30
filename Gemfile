@@ -17,6 +17,9 @@ gem "bootstrap-sass", "3.3.7"
 gem "jquery-rails"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "config", "~> 1.4"
+gem "carrierwave"
+gem "mini_magick", "4.7.0"
+gem "i18n-js"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

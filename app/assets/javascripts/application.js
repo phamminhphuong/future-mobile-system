@@ -1,3 +1,6 @@
+//= require i18n
+//= require i18n.js
+//= require i18n/translations
 //= require rails-ujs
 //= require activestorage
 //= require jquery
@@ -9,4 +12,5 @@
 //= require admin/dataTables.bootstrap.min
 //= require admin/ckeditor
 //= require showtable
+//= require image_upload
 //= require_tree .
