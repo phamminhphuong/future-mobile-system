@@ -34,10 +34,13 @@ ActiveRecord::Schema.define(version: 2018_10_21_154246) do
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content"
     t.bigint "account_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "created_at"], name: "index_comments_on_account_id_and_created_at"
     t.index ["account_id"], name: "index_comments_on_account_id"
+    t.index ["product_id", "created_at"], name: "index_comments_on_product_id_and_created_at"
+    t.index ["product_id"], name: "index_comments_on_product_id"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 2018_10_21_154246) do
   end
 
   add_foreign_key "comments", "accounts"
+  add_foreign_key "comments", "products"
   add_foreign_key "images", "products"
   add_foreign_key "order_details", "orders"
   add_foreign_key "orders", "accounts"

@@ -1,10 +1,9 @@
 class Account < ApplicationRecord
   before_save {email.downcase!}
   has_many :orders
-  has_many :comments
+  has_many :comments, dependent: :destroy
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   NUMBER_REGEX = /\d[0-9]\)*\z/
-
   enum account_type: %i(member admin)
   validates :fullname, presence: true, length: {maximum: Settings.client.maximum1}
   validates :address, presence: true
