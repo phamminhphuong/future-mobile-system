@@ -8,8 +8,8 @@
         <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
           <thead>
             <tr role="row">
-              <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
-                <%= t "status" %>
+              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                <%= t "account_id" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "phone" %>
@@ -17,11 +17,14 @@
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "address" %>
               </th>
+              <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                <%= t "status" %>
+              </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "total" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
-                <%= t "account_id" %>
+                <%= t "created_at" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "action" %>
@@ -29,22 +32,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr role="row" class="odd">
-              <td class="sorting_1">Gecko</td>
-              <td>Firefox 1.0</td>
-              <td>Win 98+ / OSX.2+</td>
-              <td>1.7</td>
-              <td>A</td>
-              <td>
-                <%= link_to  t("edit"), "#" %> | <%= link_to  t("Show"), "#" %> | <%= link_to  t("Delete"), "#" %>
-              </td>
+            <% @orders.each do |od| %>
+              <tr role="row" class="odd">
+                <td class="sorting_1"><%= od.account_fullname %></td>
+                <td><%= od.phone %></td>
+                <td><%= od.address %></td>
+                <td><%= od.status %></td>
+                <td><%= od.total %></td>
+                <td><%= od.created_at %></td>
+                <td>
+                  <%= link_to t("Show"), admin_order_url(od.id) %>
+                </td>
             </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-</div>
-<div class="box-footer">
-  <%= link_to t("create"), "#" %>
 </div>

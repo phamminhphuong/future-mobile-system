@@ -61,11 +61,15 @@ ActiveRecord::Schema.define(version: 2018_10_21_154246) do
   create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "quantity"
     t.float "price"
+    t.float "total_price"
     t.bigint "order_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id", "created_at"], name: "index_order_details_on_order_id_and_created_at"
     t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["product_id", "created_at"], name: "index_order_details_on_product_id_and_created_at"
+    t.index ["product_id"], name: "index_order_details_on_product_id"
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -100,6 +104,7 @@ ActiveRecord::Schema.define(version: 2018_10_21_154246) do
   add_foreign_key "comments", "products"
   add_foreign_key "images", "products"
   add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "products"
   add_foreign_key "orders", "accounts"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "manufacturers"
