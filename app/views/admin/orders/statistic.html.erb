@@ -1,0 +1,67 @@
+<%= provide :title, t("admin_order") %>
+<% provide :db, t("order") %>
+<% provide :action, t("statistic") %>
+<div class="box-body">
+  <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+    <div class="row">
+      <div class="col-md-12">
+        <%= form_tag admin_statistic_path, method: "get" do %>
+          <div class="col-md-4">
+            <p><%= t "from_date" %></p>
+            <%= date_field_tag :start_date, params[:start_date] %>
+          </div>
+          <div class="col-md-4">
+            <p><%= t "to_date" %></p>
+            <%= date_field_tag :end_date, params[:end_date] %>
+          </div>
+          <div class="col-md-2">
+            <%= submit_tag t("create"), id: "create_statistic", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <br><br>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t "product_id" %></th>
+              <th><%= t "product_name" %></th>
+              <th><%= t "image" %></th>
+              <th><%= t "price" %></th>
+              <th><%= t "quantity" %></th>
+              <th><%= t "total_price" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_details.each do |ord| %>
+              <tr>
+                <td><%= ord.product_id %></td>
+                <td><%= ord.product_name %></td>
+                <td><%= image_tag ord.images.first.image_link.url, class: "image_product1" %></td>
+                <td><%= ord.price %></td>
+                <td><%= ord.quantity %></td>
+                <td><%= ord.total_price %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-8">
+        <div class="row">
+          <div class="col-md-6"><%= t "quantity" %> : <%= @quantity_total %></div>
+          <div class="col-md-6"><%= t "total" %> : <%= @price_total %> <%= t "usd" %></div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="box-footer">
+  <%= link_to t("list"), admin_orders_url %>
+</div>

@@ -217,3 +217,9 @@ en:
   account_id: "Account id"
   product_id: "Product id"
   total_price: "Total price"
+  this_place_not_allowed_you: "This place is not allowed to you"
+  statistic: "Statistic"
+  product_name: "Product"
+  usd: USD
+  from_date: "From date"
+  to_date: "To date"

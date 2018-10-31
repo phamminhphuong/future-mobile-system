@@ -1,5 +1,5 @@
 <header class="main-header">
-  <%= link_to "#", html_options = {class: "logo"} do %>
+  <%= link_to root_url, html_options = {class: "logo"} do %>
     <span class="logo-mini"><b><%= t("a") %></b><%= t("lt") %></span>
     <span class="logo-lg"><b><%= t("admin") %></b><%= t("lte") %></span>
   <% end %>
@@ -9,8 +9,8 @@
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
-          <%= link_to "#", html_options = {class: "dropdown-toggle", data:{toggle: "dropdown"}} do %>
-            <span class="hidden-xs"><%= t("alexander_pierce") %></span>
+          <%= link_to logout_path, method: :delete do %>
+            <span class="hidden-xs"><%= t("logout") %></span>
           <% end %>
           <ul class="dropdown-menu">
             <li class="user-header">
