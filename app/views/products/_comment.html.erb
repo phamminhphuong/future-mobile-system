@@ -1,0 +1,15 @@
+<div class="panel-body create">
+  <div class="col-sm-3">
+    <b><%= comment.account.email %></b>
+  </div>
+  <div class="col-sm-6 content-<%= comment.id %>">
+    <%= comment.content %>
+  </div>
+  <div class="col-sm-3 text-right">
+    <% if current_account == comment.account %>
+    <%= link_to t("delete"), [comment.product, comment], method: :delete,
+      data: {confirm: t("are_you_sure")} %>
+    | <%= link_to t("edit"), edit_product_comment_path(comment.product, comment), remote: true %>
+    <% end %>
+  </div>
+</div>

@@ -19,7 +19,9 @@ size:
   max_phone: 15
   max_quantity: 11
   max_email: 200
+  status: 0
 account_type:
   admin: "admin"
 curr_unit:
   price: USD
+reload_page: "location.reload()"

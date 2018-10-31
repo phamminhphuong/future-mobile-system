@@ -1,0 +1,67 @@
+<% provide :title, t("pay") %>
+<div class="col-xs-12 col-sm-12 col-md-12 checkout-main">
+    <div id="checkoutSummaryInformation1">
+     <% if session[:cart].present? %>
+      <h2 class="checkout-title">
+        <span class="visible-xs-inline"><i class="adr-icon icon-black-cart"></i></span> Order
+        <span class="sidebar-checkout-title__quanity"> (<%= pluralize session[:cart].count, t("product") %>)</span>
+      </h2>
+       <%= render "shared/error_messages_orders" %>
+      <div class="checkout-block clearfix">
+        <% @order_details.each do |product, quantity| %>
+          <ul class="sidebar-product__list" id="right-sidebar-product__list">
+            <div class="sidebar-product__item no-border visible-xs">
+            </div>
+            <div class="sidebar-product__item ">
+              <div class="row">
+                <div class="col-xs-3">
+                  <div class="sidebar-product__item-thumb">
+                    <%= image_tag product.images.first.image_link.url, class: "image_home" %>
+                  </div>
+
+                </div>
+                <div class="col-xs-5">
+                  <div class="sidebar-product__item-info">
+                    <h4><%= product.name %></h4>
+                  </div>
+                </div>
+                <div class="col-xs-7">
+                  <ul>
+                    <li>
+                      <b><%= t ("price_pay") %></b>
+                      <%= product.price %>
+                    </li>
+                    <li>
+                      <b><%= t ("quantity_pay") %></b>
+                      <%= quantity %>
+                    </li>
+                    <li>
+                      <b><%= t ("total_pay") %></b>
+                      <%= product.price * quantity  %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </ul>
+        <% end %>
+    </div>
+    <% end %>
+  </div>
+  <div id="checkoutAddressWrapper">
+    <h2 class="text-center"> <%= t ("re_info")%></h2>
+    <%= form_for @order, url: checkout_path do |f| %>
+      <div class="col-lg-12 col-md-12 col-sx-12">
+        <%= f.label :account_id, ("fullname:") %>
+        <%= f.label current_account.fullname %><br><br>
+        <%= f.label :address, t("address") %><br>
+        <%= f.text_field :address, class: "form-control" %><br>
+        <%= f.label :phone, t("phone") %><br>
+        <%= f.text_field :phone, class: "form-control" %><br>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sx-12"><br>
+        <%= f.submit t("shopping"), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

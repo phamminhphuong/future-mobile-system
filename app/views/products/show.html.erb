@@ -42,18 +42,14 @@
         </div>
         <div class="product-detail__order addtocart-component">
           <div class="row">
-            <form action="#" method="post">
+            <%= form_for @order_detail, remote: true do |f| %>
               <div class="clearfix visible-md visible-lg"></div>
-              <div class="col-xs-12 col-sm-2 col-md-2">
-                <div class="product-order__form-control pdpAddtoCartSelectSection adr-dropdown" id="pdpAddtoCartSelectSection">
-                  <select name="quantity" id="pdpAddtoCartSelect" class="product-order__quanity-select form-control">
-                  </select>
-                </div>
+                <div class="col-xs-12 col-sm-5 col-md-5">
+                <%= f.hidden_field :product_id, value: de.id %>
+                <%= f.hidden_field :quantity, value: 1, min: 1, class: "form-control" %>
+                <%= f.submit t("add_to_card"), class: "btn btn-primary btn-sm" %>
               </div>
-              <div class="col-xs-12 col-sm-5 col-md-5">
-                <%= link_to t("add_to_card"), card_path, class: "btn btn-primary" %>
-              </div>
-            </form>
+            <% end %>
           </div>
           <div class="product-detail__right--mobile"></div>
         </div>
@@ -73,31 +69,15 @@
     </div>
     <% end %>
     <div class="row">
-      <h2 class="text-center">
-        <%= t "product_has" %>
-        <%= pluralize @comments.count, t("cmt") %>
-      </h2>
-      <% @comments.each do |cmt| %>
-        <div class="panel-body">
-          <div class="col-sm-3">
-            <b><%= cmt.account.email %></b>
-          </div>
-          <div class="col-sm-6">
-            <%= cmt.content %>
-          </div>
-          <div class="col-sm-3 text-right">
-            <% if current_account == cmt.account %>
-            <%= link_to t("delete"), [cmt.product, cmt], method: :delete,
-              data: {confirm: t("are_you_sure")} %>
-            | <%= link_to t("edit"), edit_product_comment_path(cmt.product, cmt) %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <div class="text-center">
-        <%= paginate @comments %>
+      <div class= "comment-form">
+        <%= render "comments/form" %>
       </div>
-      <%= render "comments/form" %>
+      <div class="comments">
+        <%= render partial: "comment", collection: @comments %>
+      </div>
+    </div>
+    <div class="text-center pagination">
+      <%= paginate @comments %>
     </div>
   </div>
 </div>

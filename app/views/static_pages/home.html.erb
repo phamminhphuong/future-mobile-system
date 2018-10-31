@@ -19,28 +19,29 @@
     <div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
       <div class="product-item__placeholder hidden-sm hidden-xs"></div>
       <div class="product-item">
-        <form action="#" method="post">
+       <%= form_for @order_detail, remote: true do |f| %>
           <div class="product-item__container">
             <div class="product-item__thumbnail">
-              <div style="width:200px;height:200px">
-                <%= link_to pro do %>
-                  <%= image_tag pro.images.first.image_link.url, class: "image_product" %>
-                <% end %>
-              </div>
+              <%= f.hidden_field :product_id, value: pro.id %>
+              <%= link_to pro do %>
+                <%= image_tag pro.images.first.image_link.url, class: "image_product" %>
+              <% end %>
             </div>
             <div class="text-center">
               <%= pro.name %>
             </div>
-            <div class="product-item__info text-center">
-              <div class="product-item__info-price">
-                <span class="product-item__info-price-sale" style="padding-left:20px">
-                  <%= pro.price %>
-                  <%= Settings.curr_unit.price %></span>
-              </div>
-              <%= link_to t("add_to_card"), card_path, class: "btn btn-primary" %>
+             <div class="product-item__info text-center">
+                <div class="product-item__info-price">
+                  <span class="product-item__info-price-sale">
+                    <%= pro.price %>
+                    <%= Settings.curr_unit.price %>
+                  </span>
+                  <%= f.hidden_field :quantity, value: 1, min: 1, class: "form-control" %>
+                </div>
+                <%= f.submit t("add_to_card"), class: "btn btn-primary btn-sm" %>
             </div>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
     <div id="addToCartTitle" class="display-none">

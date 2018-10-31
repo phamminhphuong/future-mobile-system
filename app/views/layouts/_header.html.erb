@@ -154,14 +154,19 @@
             </li>
             <li class="col-sm-12 col-md-2">
               <div class="nav-cart">
-                <%= image_tag "8.png" %>
+                <%= link_to image_tag("8.png"), card_path %>
                 <a href="#" class="mini-cart-link js-mini-cart-link" data-mini-cart-url="#"
                   data-mini-cart-refresh-url="#" data-mini-cart-name="#"
                   data-mini-cart-empty-name="<%= t "empty_cart" %>" data-mini-cart-items-text="Items">
                   <div class="mini-cart-icon"><span class="adr-icon icon-cart hidden-xs hidden-sm"></span>
                     <span class="adr-icon icon-cart-mobile visible-xs visible-sm"></span>
                     <span class="mini-cart-price js-cart-total-unit">
-                      <%= t "zero" %></span>
+                      <% if session[:cart].present? %>
+                        <%= session[:cart].count %>
+                      <% else %>
+                        <%= t "zero" %>
+                      <% end %>
+                     </span>
                   </div>
                 </a>
               </div>
