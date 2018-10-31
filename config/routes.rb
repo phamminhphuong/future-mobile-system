@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/card", to: "cards#show"
   get "/search", to: "static_pages#search"
+  get "/contact", to: "static_pages#contact"
+  get "/introduct", to: "static_pages#introduct"
   resources :accounts
   resources :categories
   resources :products

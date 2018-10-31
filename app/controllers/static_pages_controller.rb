@@ -12,4 +12,8 @@ class StaticPagesController < ApplicationController
     @products = Product.search params[:search]
     @product_search = @products.size
   end
+
+  def contact; end
+
+  def introduct; end
 end
