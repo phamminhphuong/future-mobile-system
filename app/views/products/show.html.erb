@@ -7,7 +7,7 @@
         <div class="product-detail__gallery js-product-detail__gallery">
           <div class="product-gallery__stage">
             <div class="product-gallery__stopper"></div>
-             <%= de.name %>
+            <%= image_tag de.images.first.image_link.url, class: "image_home" %>
           </div>
         </div>
       </div>
@@ -20,13 +20,20 @@
         <div class="product-detail__short-des js-height-toggle-description" style="max-height: none;">
           <div style="height: 100px;">
             <ul>
-              <li><%= t "manufacture" %> <%= de.manufacturer_id == 1 ? t("korea") : t("Japan") %></li>
-              <li><%= t "hot_product" %> <%= de.hot == 1 ? t("product_hot") : t("product_good") %></li>
+              <li>
+                <%= t "manufacture" %>
+                <%= de.manufacturer.name %>
+              </li>
+              <li>
+                <%= t "hot_product" %>
+                <%= de.hot == Settings.size.min_hot ? t("purchased") : t("good_product") %>
+              </li>
             </ul>
           </div>
         </div>
         <div class="product-detail__price">
-          <div class="product-detail__price-info"><%= t "price_show" %>
+          <div class="product-detail__price-info">
+            <%= t "price_show" %>
             <span class="price-info__sale">
               <%= de.price %>
               <%= Settings.curr_unit.price %>
@@ -35,7 +42,7 @@
         </div>
         <div class="product-detail__order addtocart-component">
           <div class="row">
-            <form action="gio-hang" method="post">
+            <form action="#" method="post">
               <div class="clearfix visible-md visible-lg"></div>
               <div class="col-xs-12 col-sm-2 col-md-2">
                 <div class="product-order__form-control pdpAddtoCartSelectSection adr-dropdown" id="pdpAddtoCartSelectSection">
@@ -53,15 +60,44 @@
       </div>
       <div class="col-sm-12 detail__info">
         <div class="panel panel-product-detail">
-          <div class="panel-heading"><%= t "description" %></div>
+          <div class="panel-heading">
+            <%= t "description" %>
+          </div>
           <div class="panel-body">
-            <div class="product-detail__description">
-              <p><%= de.description %></p>
+            <div class="product-detail__description" style="padding-left: 17px;">
+              <%= de.description %>
             </div>
           </div>
         </div>
       </div>
     </div>
     <% end %>
+    <div class="row">
+      <h2 class="text-center">
+        <%= t "product_has" %>
+        <%= pluralize @comments.count, t("cmt") %>
+      </h2>
+      <% @comments.each do |cmt| %>
+        <div class="panel-body">
+          <div class="col-sm-3">
+            <b><%= cmt.account.email %></b>
+          </div>
+          <div class="col-sm-6">
+            <%= cmt.content %>
+          </div>
+          <div class="col-sm-3 text-right">
+            <% if current_account == cmt.account %>
+            <%= link_to t("delete"), [cmt.product, cmt], method: :delete,
+              data: {confirm: t("are_you_sure")} %>
+            | <%= link_to t("edit"), edit_product_comment_path(cmt.product, cmt) %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <div class="text-center">
+        <%= paginate @comments %>
+      </div>
+      <%= render "comments/form" %>
+    </div>
   </div>
 </div>

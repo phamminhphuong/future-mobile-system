@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get "/introduct", to: "static_pages#introduct"
   resources :accounts
   resources :categories
-  resources :products
+  resources :products do
+    resources :comments
+  end
   namespace :admin do
     get "dasboard/index", to: "dasboard#index"
     resources :accounts

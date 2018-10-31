@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
     @product_hot = Product.select_products.show_product_hot_desc
     .limit Settings.size.count_hot
   end
+
+  private
+
+  def authenticate_account!
+    return if current_account.present?
+    flash[:danger] = t "sign_up_not_found"
+    redirect_to login_url
+  end
 end
