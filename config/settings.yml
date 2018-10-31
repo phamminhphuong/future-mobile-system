@@ -13,12 +13,12 @@ size:
   max_hot: 10
   count_new: 4
   count_hot: 4
-client:
-  minimum: 6
-  maximum1: 50
-  maximum2: 255
-  maximum3: 15
-  maximum3: 11
+  min_password: 6
+  max_fullname: 50
+  max_address: 255
+  max_phone: 15
+  max_quantity: 11
+  max_email: 200
 account_type:
   admin: "admin"
 curr_unit:

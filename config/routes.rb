@@ -26,5 +26,6 @@ Rails.application.routes.draw do
     resources :orders
     resources :images
     resources :comments
+    resources :orders
   end
 end
