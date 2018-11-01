@@ -13,6 +13,12 @@ class Admin::OrdersController < Admin::BaseController
 
   def edit; end
 
+  def statistic
+    @order_details = OrderDetail.created_between params[:start_date],
+      params[:end_date]
+    get_total
+  end
+
   private
 
   def load_order
@@ -20,5 +26,14 @@ class Admin::OrdersController < Admin::BaseController
     return if @order.present?
     flash[:danger] = t "not_order"
     redirect_to admin_orders_url
+  end
+
+  def get_total
+    @quantity_total = 0
+    @price_total = 0
+    @order_details.each do |ord|
+      @quantity_total += ord.quantity
+      @price_total += ord.total_price
+    end
   end
 end

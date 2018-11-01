@@ -27,5 +27,6 @@ Rails.application.routes.draw do
     resources :images
     resources :comments
     resources :orders
+    get "/statistic", to: "orders#statistic"
   end
 end
