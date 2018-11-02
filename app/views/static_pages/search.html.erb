@@ -24,7 +24,7 @@
               <div class="product-item__thumbnail">
                 <div class="product_show">
                   <%= link_to pro do %>
-                    <%= pro.name %>
+                    <%= image_tag pro.images.first.image_link.url, class: "image_product" %>
                   <% end %>
                 </div>
               </div>

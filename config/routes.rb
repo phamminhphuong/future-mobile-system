@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :images
     resources :comments
     resources :orders
+    resources :xml, only: %i(index)
     get "/statistic", to: "orders#statistic"
   end
 end

@@ -10,4 +10,17 @@ class OrderDetail < ApplicationRecord
   scope :created_between, lambda {|start_date, end_date|
     where "created_at >= ? AND created_at <= ?", start_date, end_date}
   delegate :id, :name, :price, to: :product, prefix: true
+
+  private
+
+  class << self
+    def to_xls options = {}
+      CSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |order_detail|
+          csv << order_detail.attributes.values_at(*column_names)
+        end
+      end
+    end
+  end
 end
