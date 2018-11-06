@@ -20,6 +20,7 @@ size:
   max_quantity: 11
   max_email: 200
   status: 0
+  status_number: 1
 account_type:
   admin: "admin"
 curr_unit:

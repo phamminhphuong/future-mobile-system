@@ -37,13 +37,18 @@
                 <td class="sorting_1"><%= od.account_fullname %></td>
                 <td><%= od.phone %></td>
                 <td><%= od.address %></td>
-                <td><%= od.status %></td>
+                <td>
+                  <%= od.status == Settings.size.status_number ? t("delivered") : t("no_transaction") %>
+                </td>
                 <td><%= od.total %></td>
-                <td><%= od.created_at %></td>
+                <td><%= od.short_created_at %></td>
                 <td>
                   <%= link_to t("Show"), admin_order_url(od.id) %>
+                  <% unless od.status == Settings.size.status_number %>
+                    | <%= link_to t("delivery"), admin_order_url(od.id), method: :patch %>
+                  <% end %>
                 </td>
-            </tr>
+              </tr>
             <% end %>
           </tbody>
         </table>

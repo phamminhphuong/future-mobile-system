@@ -1,11 +1,10 @@
 class Admin::ProductsController < Admin::BaseController
-  before_action :load_product, except: %i(new index create show)
+  before_action :load_product, except: %i(new index create show import)
   before_action :load_product_show, only: %i(show)
-  before_action :load_category_manufacturer, except: %i(index show destroy)
+  before_action :load_category_manufacturer, except: %i(index show destroy import)
+  before_action :load_list_product, only: %i(index import)
 
-  def index
-    @products = Product.select_product
-  end
+  def index; end
 
   def new
     @product = Product.new
@@ -25,6 +24,17 @@ class Admin::ProductsController < Admin::BaseController
     rescue Exception
       @image = @product.images.build
       render :new
+  end
+
+  def import
+    ActiveRecord::Base.transaction do
+      Product.import params[:file]
+      redirect_to admin_products_url
+      flash[:success] = t "successfully_import"
+    end
+    rescue Exception
+      flash[:danger] = t "not_file_import"
+      render :index
   end
 
   def show
@@ -81,5 +91,12 @@ class Admin::ProductsController < Admin::BaseController
   def load_category_manufacturer
     @categories = Category.select_category
     @manufacturers = Manufacturer.select_manufacturer
+  end
+
+  def load_list_product
+    @products = Product.select_product
+    return if @products.present?
+    flash[:danger] = t "not_product"
+    redirect_to admin_products_url
   end
 end

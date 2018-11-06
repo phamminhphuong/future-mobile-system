@@ -20,6 +20,8 @@ gem "config", "~> 1.4"
 gem "carrierwave"
 gem "mini_magick", "4.7.0"
 gem "i18n-js"
+gem "roo"
+gem "roo-xls"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

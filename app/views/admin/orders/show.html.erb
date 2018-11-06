@@ -6,7 +6,7 @@
     <div class="col-md-6">
       <p>
         <%= t "status" %> :
-        <%= @order.status %>
+        <%= @order.status == Settings.size.status_number ? t("delivered") : t("no_transaction") %>
       </p>
       <p>
         <%= t "total" %> :

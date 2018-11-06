@@ -1,7 +1,8 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 require_relative "boot"
 require "rails/all"
 require "csv"
+require "roo"
 Bundler.require(*Rails.groups)
 module FutureMobileSystem
   class Application < Rails::Application

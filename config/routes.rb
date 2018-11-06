@@ -24,9 +24,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get "dasboard/index", to: "dasboard#index"
     resources :accounts
-    resources :categories
-    resources :manufacturers
-    resources :products
+    resources :categories, :manufacturers, :products do
+      collection {post :import}
+    end
     resources :orders
     resources :images
     resources :comments

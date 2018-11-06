@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  extend OpenSpreadsheet
+
   belongs_to :category
   belongs_to :manufacturer
   has_many :images, dependent: :destroy
@@ -31,6 +33,10 @@ class Product < ApplicationRecord
       else
         select_products.show_product_desc
       end
+    end
+
+    def import file
+      import_file file, ["name", "quantity", "price", "description", "hot", "category_id", "manufacturer_id"]
     end
   end
 end

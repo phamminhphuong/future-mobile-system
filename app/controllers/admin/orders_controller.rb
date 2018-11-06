@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
-  before_action :load_order, only: %i(show)
+  before_action :load_order, only: %i(show update)
 
   def index
     @orders = Order.select_order
@@ -11,7 +11,10 @@ class Admin::OrdersController < Admin::BaseController
     @order_details = @order.order_details.select_order_detail
   end
 
-  def edit; end
+  def update
+    @order.update! status: 1
+    redirect_to admin_orders_url
+  end
 
   def statistic
     @order_details = OrderDetail.created_between params[:start_date],
