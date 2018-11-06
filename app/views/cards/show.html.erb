@@ -20,42 +20,42 @@
             <div class="cart-product__quantity"><%= t "quantity" %></div>
             <div class="cart-product__subtotal"><%= t "amount" %></div>
           </div>
-          <div class="cart-products__body" style="max-height: 280px; margin: 15px 0px; padding: 0px 15px 0px 5px; overflow-y: hidden; outline: none;"
-            tabindex="0">
-            <div class="cart-product  entry-item-1">
-              <div class="cart-product__item__thumbnail">
-                <%= t "add_to_card", class: "style_image_card" %>
-              </div>
-              <div class="cart-product__item__info">
-                <h3 class="cart-product__item__title">
-                  <a data-product="1342017" href="chi-tiet-san-pham/1"><%= t "iphone" %></a>
-                </h3>
-                <div class="clearfix"></div>
-                <div>
+          <div class="cart-products__body">
+              <% @order_details.each do |product, quantity| %>
+              <div class="cart-product  entry-item-1">
+                <div class="cart-product__item__thumbnail">
+                  <%= image_tag product.images.first.image_link.url, class: "image_home" %>
                 </div>
-                <a class="cart-product__item__remove" href="gio-hang/bo-san-pham/027c91341fd5cf4d2579b49c4b6a90da">
-                  <i class="adr-icon icon-trash"></i><%= t "delete" %></a>
-              </div>
-              <div class="cart-product__price">
-                <div class="cart-product__price-sale">
-                  <%= Settings.size.length_name_description %>
-                  <%= Settings.curr_unit.price %>
+                <div class="cart-product__item__info">
+                  <h3 class="cart-product__item__title">
+                    <%= product.name %>
+                  </h3>
+                  <div class="clearfix"></div>
+                  <div>
+                  <%= link_to t("Delete"), order_detail_path(product.id), method: :delete %>
+                  </div>
+                </div>
+                <div class="cart-product__price">
+                  <div class="cart-product__price-sale">
+                    <%= product.price %>
+                    <%= Settings.curr_unit.price %>
+                  </div>
+                </div>
+                <div class="cart-product__quantity">
+                  <div class="item__quantity">
+                    <%= quantity %>
+                  </div>
+                </div>
+                <div class="cart-product__subtotal">
+                  <div class="item__total js-item-total hidden-xs">
+                    <%= quantity * product.price %>
+                    <%= Settings.curr_unit.price %>
+                  </div>
+                </div>
+                <div class="js-item-warnings">
                 </div>
               </div>
-              <div class="cart-product__quantity">
-                <div class="item__quantity">
-                  <input type="text" value="1">
-                </div>
-              </div>
-              <div class="cart-product__subtotal">
-                <div class="item__total js-item-total hidden-xs">
-                  <%= Settings.size.length_name_description %>
-                  <%= Settings.curr_unit.price %>
-                </div>
-              </div>
-              <div class="js-item-warnings" style="display:none;">
-              </div>
-            </div>
+              <% end %>
           </div>
         </div>
       </div>
@@ -64,10 +64,7 @@
           <div class="cart-footer__row">
             <div class="cart-total">
               <div class="cart-total__item">
-                <div class="cart-total__item-label"><%= t "amount" %></div>
                 <div class="cart-total__item-value text-red cart-total__bill">
-                  <%= Settings.size.length_name_description %>
-                  <%= Settings.curr_unit.price %>
                 </div>
               </div>
             </div>
@@ -79,10 +76,7 @@
               <%= link_to t("continue"), root_path %>
             </div>
             <div class="cart-submit">
-              <a href="thanh-toan" class="btn btn-primary js-cart-checkout-button ">
-                <%= t "pay" %>
-                <img class="visible-xs-inline visible-sm-inline" src="">
-              </a>
+              <%= link_to "Pay", pay_path, class: "btn btn-primary" %>
             </div>
           </div>
         </div>

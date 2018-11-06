@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :account
   has_many :order_details, dependent: :destroy
+
   validates :status, presence: true
   validates :phone, length: {maximum: Settings.size.max_phone},
     presence: true

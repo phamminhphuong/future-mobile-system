@@ -21,9 +21,14 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def authenticate_account!
-    return if current_account.present?
-    flash[:danger] = t "sign_up_not_found"
-    redirect_to login_url
+  def current_order
+    if session[:order_id].present?
+      @order = Order.find_by id: session[:order_id]
+      return if @order.present?
+      flash[:danger] = t "current_order_not_found"
+      redirect_to root_path
+    else
+      Order.new
+    end
   end
 end

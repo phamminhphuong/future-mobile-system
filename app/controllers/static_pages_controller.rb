@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
       .page(params[:page])
       .per Settings.size.size_page
     @product_count = @products.size
+    @order_detail = current_order.order_details.new
   end
 
   def about; end

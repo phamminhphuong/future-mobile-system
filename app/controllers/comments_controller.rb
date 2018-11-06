@@ -2,32 +2,30 @@ class CommentsController < ApplicationController
   before_action :find_product
   before_action :find_comment, except: %i(new create)
   before_action :comment_owner, only: %i(destroy update edit)
-  before_action :authenticate_account!, only: %i(create)
-
-  def new
-    @comment = Comment.new
-  end
+  before_action :authenticate_account
 
   def create
     @comment = @product.comments.create comment_params
     @comment.account_id = current_account.id
     @comment.save
+    @comments = Comment.where(product_id: @product).show_comment_desc
+      .page(params[:page])
+      .per Settings.size.picture_size
     if @comment.save
-      flash[:success] = t "you_are_commented"
-      redirect_to product_path @product
-    else
-      render :new
+      respond_to {|format| format.js}
     end
   end
 
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def update
     if @comment.update comment_params
-      flash[:success] = t "update_comment_succsess"
-      redirect_to product_path @product
-    else
-      render :edit
+      respond_to {|format| format.js}
     end
   end
 
@@ -61,8 +59,14 @@ class CommentsController < ApplicationController
   end
 
   def comment_owner
-    return unless current_account.id == @comment.account.id
+    return if current_account.id == @comment.account.id
     flash[:warning] = t "not_pass"
     redirect_to @product
+  end
+
+  def authenticate_account
+    return if current_account.present?
+    flash[:danger] = t "sign_up_not_found"
+    redirect_to login_url
   end
 end

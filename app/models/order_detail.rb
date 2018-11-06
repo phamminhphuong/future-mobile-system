@@ -1,6 +1,7 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :product
+
   has_many :images, through: :product
   validates :quantity, length: {maximum: Settings.size.max_quantity},
     presence: true
