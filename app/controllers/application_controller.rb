@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include SessionsHelper
   before_action :load_cate
   before_action :load_product_new
   before_action :load_product_hot
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_account!
 
   def load_cate
     @categories = Category.select_category.create_desc.limit Settings.size.limit
@@ -30,5 +31,9 @@ class ApplicationController < ActionController::Base
     else
       Order.new
     end
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit :sign_up, keys: [:fullname, :phone, :address]
   end
 end

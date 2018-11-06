@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
-  before_save {email.downcase!}
+  devise :database_authenticatable, :registerable,
+   :recoverable, :rememberable
   has_many :orders
   has_many :comments, dependent: :destroy
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -14,18 +15,4 @@ class Account < ApplicationRecord
     uniqueness: {case_sensitive: false}
   validates :password, presence: true,
     length: {minimum: Settings.size.min_password}, allow_nil: true
-  scope :select_account, -> {select(:id, :fullname, :address, :phone, :email, :account_type)}
-  has_secure_password
-
-  class << self
-    def digest string
-      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-        BCrypt::Engine.cost
-      BCrypt::Password.create string, cost: cost
-    end
-
-    def new_token
-      SecureRandom.urlsafe_base64
-    end
-  end
 end

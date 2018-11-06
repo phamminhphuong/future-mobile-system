@@ -9,7 +9,7 @@
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
-          <%= link_to logout_path, method: :delete do %>
+          <%= link_to destroy_account_session_path, method: :delete do %>
             <span class="hidden-xs"><%= t("logout") %></span>
           <% end %>
           <ul class="dropdown-menu">

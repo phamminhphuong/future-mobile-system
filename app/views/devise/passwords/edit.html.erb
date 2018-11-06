@@ -1,0 +1,23 @@
+<% provide :title, t("change_password") %>
+<div class="col-lg-12 col-md-12 col-sx-12">
+  <h2 class="text-center"><%= t "change_password" %></h2>
+</div>
+<%= form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put } do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+  <div class="col-lg-12 col-md-12 col-sx-12">
+    <%= f.label :password, t("new_password") %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control"%><br/>
+    <%= f.label :password_confirmation, t("comfirm_pass") %><br/>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %><br/>
+  </div>
+  <div class="col-lg-12 col-md-12 col-sx-12">
+    <%= f.submit t("change_password"), class: "btn btn-primary" %><br/>
+  </div>
+<% end %>
+ <div class="col-lg-12 col-md-12 col-sx-12">
+  <%= render "devise/shared/links" %>
+</div>
