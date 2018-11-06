@@ -37,3 +37,11 @@
 <div class="box-footer">
   <%= link_to t("create"), new_admin_category_url %>
 </div>
+<div class="box-footer">
+  <h4><%= t "import_file" %></h4>
+  <%= form_tag import_admin_categories_path, multipart: true do %>
+    <%= file_field_tag :file, class: "form-control", accept: ".xlsx, .xls, .csv" %>
+    <br>
+    <%= submit_tag t("import"), class: "btn btn-primary" %>
+  <% end %>
+</div>

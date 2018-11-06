@@ -8,6 +8,6 @@ class Order < ApplicationRecord
   validates :address, length: {maximum: Settings.size.max_address},
     presence: true
   scope :select_order, -> {select :id, :status, :phone, :address, :total,
-    :account_id, :created_at}
+    :account_id, "date(created_at) as short_created_at"}
   delegate :fullname, to: :account, prefix: true
 end

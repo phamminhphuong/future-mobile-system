@@ -1,9 +1,8 @@
 class Admin::CategoriesController < Admin::BaseController
-  before_action :load_category, except: %i(new index create)
+  before_action :load_category, except: %i(new index create import)
+  before_action :load_list_category, only: %i(index import)
 
-  def index
-    @categories = Category.select_category
-  end
+  def index; end
 
   def new
     @category = Category.new
@@ -17,6 +16,17 @@ class Admin::CategoriesController < Admin::BaseController
     else
       render :new
     end
+  end
+
+  def import
+    ActiveRecord::Base.transaction do
+      Category.import params[:file]
+      redirect_to admin_categories_url
+      flash[:success] = t "successfully_import"
+    end
+    rescue Exception
+      flash[:danger] = t "not_file_import"
+      render :index
   end
 
   def show; end
@@ -50,6 +60,13 @@ class Admin::CategoriesController < Admin::BaseController
   def load_category
     @category = Category.find_by id: params[:id]
     return if @category.present?
+    flash[:danger] = t "not_category"
+    redirect_to admin_categories_url
+  end
+
+  def load_list_category
+    @categories = Category.select_category
+    return if @categories.present?
     flash[:danger] = t "not_category"
     redirect_to admin_categories_url
   end

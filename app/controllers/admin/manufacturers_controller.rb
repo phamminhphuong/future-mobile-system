@@ -1,9 +1,8 @@
 class Admin::ManufacturersController < Admin::BaseController
-  before_action :load_manufacturer, except: %i(new index create)
+  before_action :load_manufacturer, except: %i(new index create import)
+  before_action :load_list_manufacturer, only: %i(index import)
 
-  def index
-    @manufacturers = Manufacturer.select_manufacturer
-  end
+  def index; end
 
   def new
     @manufacturer = Manufacturer.new
@@ -17,6 +16,17 @@ class Admin::ManufacturersController < Admin::BaseController
     else
       render :new
     end
+  end
+
+  def import
+    ActiveRecord::Base.transaction do
+      Manufacturer.import params[:file]
+      redirect_to admin_manufacturers_url
+      flash[:success] = t "successfully_import"
+    end
+    rescue Exception
+      flash[:danger] = t "not_file_import"
+      render :index
   end
 
   def show; end
@@ -50,6 +60,13 @@ class Admin::ManufacturersController < Admin::BaseController
   def load_manufacturer
     @manufacturer = Manufacturer.find_by id: params[:id]
     return if @manufacturer.present?
+    flash[:danger] = t "not_manufacturer"
+    redirect_to admin_manufacturers_url
+  end
+
+  def load_list_manufacturer
+    @manufacturers = Manufacturer.select_manufacturer
+    return if @manufacturers.present?
     flash[:danger] = t "not_manufacturer"
     redirect_to admin_manufacturers_url
   end
