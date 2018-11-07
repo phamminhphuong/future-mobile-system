@@ -36,8 +36,6 @@ class AddDeviseToAccounts < ActiveRecord::Migration[5.2]
       # Uncomment below if timestamps were not included in your original model.
       t.timestamps null: false
     end
-    add_column :users, :reset_password_token, :string
-    add_column :users, :reset_password_sent_at, :datetime
     add_index :accounts, :email, unique: true
     add_index :accounts, :reset_password_token, unique: true
     add_index :accounts, :confirmation_token, unique: true
