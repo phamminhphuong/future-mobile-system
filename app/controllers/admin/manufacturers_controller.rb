@@ -1,8 +1,12 @@
 class Admin::ManufacturersController < Admin::BaseController
   before_action :load_manufacturer, except: %i(new index create import)
-  before_action :load_list_manufacturer, only: %i(index import)
+  before_action :load_list_manufacturer, only: %i(import)
 
-  def index; end
+  def index
+    @q = Manufacturer.ransack params[:q]
+    @manufacturers = @q.result.page(params[:page])
+      .per Settings.size.size_page_admin
+  end
 
   def new
     @manufacturer = Manufacturer.new

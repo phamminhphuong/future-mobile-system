@@ -8,9 +8,9 @@
 //= require bootstrap
 //= require admin/bootstrap.min
 //= require admin/adminlte
-//= require admin/jquery.dataTables.min
-//= require admin/dataTables.bootstrap.min
 //= require admin/ckeditor
 //= require showtable
 //= require image_upload
+//= require highcharts
+//= require chartkick
 //= require_tree .

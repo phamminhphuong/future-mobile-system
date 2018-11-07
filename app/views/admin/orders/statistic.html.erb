@@ -15,7 +15,7 @@
             <%= date_field_tag :end_date, params[:end_date] %>
           </div>
           <div class="col-md-2">
-            <%= submit_tag t("create"), id: "create_statistic", class: "btn btn-primary" %>
+            <%= submit_tag t("statistic"), id: "create_statistic", class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>
@@ -63,6 +63,7 @@
   </div>
 </div>
 <div class="box-footer">
-  <%= link_to t("excel_by_xml"), admin_xml_index_url(format: "xls") %> ------
+  <%= link_to t("excel_by_xml"), admin_statistic_url(format: "xls", start_date: params[:start_date], end_date: params[:end_date]) %> |
   <%= link_to t("list"), admin_orders_url %>
 </div>
+<%= line_chart OrderDetail.group(:created_at).sum(:total_price) %>

@@ -2,7 +2,9 @@ class Admin::AccountsController < Admin::BaseController
   before_action :load_account, except: %i(new index create)
 
   def index
-    @accounts = Account.select_account
+    @q = Account.ransack params[:q]
+    @accounts = @q.result.page(params[:page])
+      .per Settings.size.size_page_admin
   end
 
   def new

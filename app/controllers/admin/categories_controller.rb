@@ -1,8 +1,12 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :load_category, except: %i(new index create import)
-  before_action :load_list_category, only: %i(index import)
+  before_action :load_list_category, only: %i(import)
 
-  def index; end
+  def index
+    @q = Category.ransack params[:q]
+    @categories = @q.result.page(params[:page])
+      .per Settings.size.size_page_admin
+  end
 
   def new
     @category = Category.new

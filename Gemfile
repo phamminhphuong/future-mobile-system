@@ -22,6 +22,9 @@ gem "mini_magick", "4.7.0"
 gem "i18n-js"
 gem "roo"
 gem "roo-xls"
+gem "chartkick"
+gem "highcharts-rails", "~> 4.2", ">= 4.2.5"
+gem "ransack"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
