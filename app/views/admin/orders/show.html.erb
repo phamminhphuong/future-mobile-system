@@ -14,12 +14,12 @@
       </p>
       <p>
         <%= t "created_at" %> :
-        <%= @order.created_at %>
+        <%= @order.created_at.to_date %>
       </p>
     </div>
     <div class="col-md-6">
       <p>
-        <%= t "account_id" %> :
+        <%= t "account" %> :
         <%= @order.account_fullname %>
       </p>
       <p>

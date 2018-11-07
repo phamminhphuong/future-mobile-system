@@ -23,11 +23,11 @@
     <dd><%= @product.hot %></dd>
   </dl>
   <dl class="dl-horizontal">
-    <dt><%= t "category_id" %></dt>
+    <dt><%= t "category_name" %></dt>
     <dd><%= @product.category.name %></dd>
   </dl>
   <dl class="dl-horizontal">
-    <dt><%= t "manufacturer_id" %></dt>
+    <dt><%= t "manufacturer_name" %></dt>
     <dd><%= @product.manufacturer.name %></dd>
   </dl>
   <dl class="dl-horizontal">
@@ -42,6 +42,9 @@
               data: {confirm: t("you_sure")}, class: "delete_image" %>
           </div>
         <% end %>
+      </div>
+      <div class="paginate_page">
+        <%= paginate @images %>
       </div>
     </dd>
   </dl>
@@ -71,6 +74,9 @@
           </table>
         </dd>
       </div>
+    </div>
+    <div class="paginate_page">
+      <%= paginate @comments %>
     </div>
   </dl>
 </div>

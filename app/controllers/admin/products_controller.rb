@@ -2,9 +2,13 @@ class Admin::ProductsController < Admin::BaseController
   before_action :load_product, except: %i(new index create show import)
   before_action :load_product_show, only: %i(show)
   before_action :load_category_manufacturer, except: %i(index show destroy import)
-  before_action :load_list_product, only: %i(index import)
+  before_action :load_list_product, only: %i(import)
 
-  def index; end
+  def index
+    @q = Product.ransack params[:q]
+    @products = @q.result.page(params[:page])
+      .per Settings.size.size_page_admin
+  end
 
   def new
     @product = Product.new
@@ -38,8 +42,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def show
-    @images = @product.images.select_image
-    @comments = @product.comments.select_comment
+    @images = @product.images.select_image.page(params[:page])
+      .per Settings.size.size_page
+    @comments = @product.comments.select_comment.page(params[:page])
+      .per Settings.size.size_page
   end
 
   def edit; end

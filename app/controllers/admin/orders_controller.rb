@@ -2,7 +2,9 @@ class Admin::OrdersController < Admin::BaseController
   before_action :load_order, only: %i(show update)
 
   def index
-    @orders = Order.select_order
+    @q = Order.ransack params[:q]
+    @orders = @q.result.page(params[:page])
+      .per Settings.size.size_page_admin
   end
 
   def new; end
@@ -20,6 +22,10 @@ class Admin::OrdersController < Admin::BaseController
     @order_details = OrderDetail.created_between params[:start_date],
       params[:end_date]
     get_total
+    respond_to do |format|
+      format.html
+      format.xls {send_data @order_details.to_xls(col_sep: "\t")}
+    end
   end
 
   private

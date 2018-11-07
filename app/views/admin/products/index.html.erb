@@ -5,6 +5,34 @@
   <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
     <div class="row">
       <div class="col-sm-12">
+        <div class="row">
+          <div class="col-md-9 col-md-offset-3" id="div-search">
+            <%= search_form_for [:admin, @q] do |f| %>
+              <div class="field">
+                <div class="col-md-10">
+                  <div class="col-md-4">
+                    <%= f.label :price_gteq, t("price_from"), class: "input_total" %>
+                    <%= f.number_field :price_gteq, class: "input_total" %>
+                  </div>
+                  <div class="col-md-4">
+                    <%= f.label :price_lteq, t("price_to"), class: "input_total" %>
+                    <%= f.number_field :price_lteq, class: "input_total" %>
+                  </div>
+                  <div class="col-md-4">
+                    <%= f.label :price_lteq, t("search_product"), class: "input_total" %>
+                    <%= f.search_field :category_name_or_manufacturer_name_or_name_or_description_cont,
+                      id: "input_search" %>
+                  </div>
+                </div>
+              </div>
+              <div class="actions">
+                <div class="col-md-2">
+                  <%= f.submit t("search"), id: "search_admin1" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
         <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
           <thead>
             <tr role="row">
@@ -24,10 +52,10 @@
                 <%= t "hot" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
-                <%= t "category_id" %>
+                <%= t "category_name" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
-                <%= t "manufacturer_id" %>
+                <%= t "manufacturer_name" %>
               </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "action" %>
@@ -42,8 +70,8 @@
                 <td><%= pr.price %></td>
                 <td><%= pr.description %></td>
                 <td><%= pr.hot %></td>
-                <td><%= pr.category_id %></td>
-                <td><%= pr.manufacturer_id %></td>
+                <td><%= pr.category_name %></td>
+                <td><%= pr.manufacturer_name %></td>
                 <td>
                   <%= link_to t("edit"), edit_admin_product_url(pr.id) %> |
                   <%= link_to t("Show"), admin_product_url(pr.id) %> |
@@ -54,6 +82,9 @@
             <% end %>
           </tbody>
         </table>
+        <div class="paginate_page">
+          <%= paginate @products %>
+        </div>
       </div>
     </div>
   </div>
