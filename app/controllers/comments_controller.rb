@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :find_comment, except: %i(new create)
   before_action :comment_owner, only: %i(destroy update edit)
   before_action :authenticate_account
+  load_and_authorize_resource
 
   def create
     @comment = @product.comments.create comment_params

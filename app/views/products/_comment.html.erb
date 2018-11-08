@@ -6,9 +6,11 @@
     <%= comment.content %>
   </div>
   <div class="col-sm-3 text-right">
-    <% if current_account == comment.account %>
-    <%= link_to t("delete"), [comment.product, comment], method: :delete,
-      data: {confirm: t("are_you_sure")} %>
+    <% if can? :destroy, comment %>
+      <%= link_to t("delete"), [comment.product, comment], method: :delete,
+        data: {confirm: t("are_you_sure")} %>
+    <% end %>
+     <% if can? :update, comment %>
     | <%= link_to t("edit"), edit_product_comment_path(comment.product, comment), remote: true %>
     <% end %>
   </div>

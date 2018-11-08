@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i(show)
-
   def show
     @comment = Comment.new
     @products = Product.show_product(params[:id]).includes(:manufacturers)

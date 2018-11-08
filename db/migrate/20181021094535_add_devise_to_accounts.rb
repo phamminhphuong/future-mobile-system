@@ -28,20 +28,18 @@ class AddDeviseToAccounts < ActiveRecord::Migration[5.2]
       t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
-      t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
-      t.string   :unlock_token # Only if unlock strategy is :email or :both
-      t.datetime :locked_at
+      # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
+      # t.string   :unlock_token # Only if unlock strategy is :email or :both
+      # t.datetime :locked_at
 
 
       # Uncomment below if timestamps were not included in your original model.
       t.timestamps null: false
     end
-    add_column :users, :reset_password_token, :string
-    add_column :users, :reset_password_sent_at, :datetime
     add_index :accounts, :email, unique: true
     add_index :accounts, :reset_password_token, unique: true
     add_index :accounts, :confirmation_token, unique: true
-    add_index :accounts, :unlock_token, unique: true
+    # add_index :accounts, :unlock_token, unique: true
   end
 
   def self.down

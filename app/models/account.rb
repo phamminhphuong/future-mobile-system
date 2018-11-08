@@ -1,6 +1,6 @@
 class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
-   :recoverable, :rememberable
+    :recoverable, :rememberable, :trackable
   has_many :orders
   has_many :comments, dependent: :destroy
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

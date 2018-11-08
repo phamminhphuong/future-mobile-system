@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :load_product_hot
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_account!
+  alias_method  :current_user, :current_account
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
   def load_cate
     @categories = Category.select_category.create_desc.limit Settings.size.limit
