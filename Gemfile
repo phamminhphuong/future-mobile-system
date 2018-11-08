@@ -25,6 +25,8 @@ gem "roo-xls"
 gem "chartkick"
 gem "highcharts-rails", "~> 4.2", ">= 4.2.5"
 gem "ransack"
+gem "devise"
+gem "devise-i18n", "~> 0.12.1"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
