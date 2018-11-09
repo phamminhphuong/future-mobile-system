@@ -30,6 +30,10 @@
         <div class="hidden-xs">
           <div class="product-detail__title">
             <h3><%= de.name %></h3>
+            <h5>
+              <%= t "share" %><br><br>
+              <%= social_share_button_tag de.name %>
+            </h5>
           </div>
         </div>
         <div class="product-detail__short-des js-height-toggle-description" style="max-height: none;">

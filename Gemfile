@@ -28,6 +28,7 @@ gem "ransack"
 gem "devise"
 gem "devise-i18n", "~> 0.12.1"
 gem "cancancan", "~> 2.0"
+gem "social-share-button"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

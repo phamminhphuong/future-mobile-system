@@ -23,9 +23,25 @@ size:
   status: 0
   status_number: 1
   list_image: 3
-
+  price_begin: 0
+  price_end: 0
+  price_end_one: 500000
+  price_begin_two: 500000
+  price_end_two: 2000000
+  price_begin_three: 2000000
+  price_end_three: 5000000
+  price_begin_four: 5000000
+  price_end_four: 10000000
+  price_begin_five: 10000000
+  price_end_file: 500000000
 account_type:
   admin: "admin"
 curr_unit:
   price: USD
 reload_page: "location.reload()"
+value_price:
+  one: "1"
+  two: "2"
+  three: "3"
+  four: "4"
+  five: "5"

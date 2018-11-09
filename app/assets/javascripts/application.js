@@ -13,4 +13,5 @@
 //= require image_upload
 //= require highcharts
 //= require chartkick
+//= require social-share-button
 //= require_tree .
