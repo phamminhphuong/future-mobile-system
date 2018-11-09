@@ -1,8 +1,8 @@
 Account.create!(fullname: "Admin",address: "Ninh Binh", phone: "123456789", email: "admin@gmail.com", password: "1234567",
   password_confirmation: "1234567", account_type: 1)
-Account.create!(fullname: "Minh Hang",address: "Ninh Binh", phone: "123456789", email: "minhhang@gmail.com", password: "1234567",
+Account.create!(fullname: "Minh Hang",address: "Ninh Binh", phone: "123456789", email: "user1@gmail.com", password: "1234567",
   password_confirmation: "1234567", account_type: 0)
-Account.create!(fullname: "Hoang Anh",address: "Ninh Binh", phone: "123456789", email: "hoanganh@gmail.com", password: "1234567",
+Account.create!(fullname: "Hoang Anh",address: "Ninh Binh", phone: "123456789", email: "user2@gmail.com", password: "1234567",
   password_confirmation: "1234567", account_type: 0)
 Category.create!(name: "Thiết bị điện tử", parent_id: 0)
 Category.create!(name: "Phụ kiện điện tử", parent_id: 0)

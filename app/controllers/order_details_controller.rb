@@ -1,6 +1,5 @@
 class OrderDetailsController < ApplicationController
   def new; end
-
   def create
     @order_new = OrderCreateService.new session: session, order_detail: params[:order_detail]
     @order_new.new_order
