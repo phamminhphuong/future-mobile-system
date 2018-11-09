@@ -2,15 +2,25 @@
   <div class="section__breadcrumb-inner">
     <div class="section__breadcrumb section__breadcrumb--full">
       <div class="container">
-        <ol id="header__breadcrumb" class="header__breadcrumb breadcrumb">
-          <% @categories.each do |cate| %>
+        <ul class="nav">
+          <li><%= link_to t("home"), root_url %></li>
+          <% @categories.each do |ct| %>
             <li>
-              <%= link_to cate do %>
-                <%= cate.name %>
+              <%= link_to "#" do %>
+                <%= ct.name %>
               <% end %>
+              <ul class="sub-menu">
+                <% select_category_parent(ct.id).each do |ct1| %>
+                  <li>
+                    <%= link_to ct1 do %>
+                      <%= ct1.name %>
+                   <% end %>
+                  </li>
+                <% end %>
+               </ul>
             </li>
           <% end %>
-        </ol>
+        </ul>
       </div>
     </div>
   </div>

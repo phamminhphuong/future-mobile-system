@@ -27,6 +27,9 @@
               <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "name" %>
               </th>
+              <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
+                <%= t "parent_id" %>
+              </th>
               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">
                 <%= t "action" %>
               </th>
@@ -36,6 +39,7 @@
             <% @categories.each do |c| %>
               <tr role="row" class="odd">
                 <td class="sorting_1"><%= c.name %></td>
+                <td><%= c.parent_id %></td>
                 <td>
                   <%= link_to t("edit"), edit_admin_category_url(c.id) %> |
                   <%= link_to t("Show"), admin_category_url(c.id) %> |

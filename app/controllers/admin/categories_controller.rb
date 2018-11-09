@@ -1,6 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :load_category, except: %i(new index create import)
-  before_action :load_list_category, only: %i(import)
+  before_action :load_list_category, except: %i(index show destroy)
 
   def index
     @q = Category.ransack params[:q]
@@ -58,7 +58,7 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
   def category_params
-    params.require(:category).permit :name
+    params.require(:category).permit :name, :parent_id
   end
 
   def load_category

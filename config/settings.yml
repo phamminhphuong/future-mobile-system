@@ -12,8 +12,8 @@ size:
   min_price: 0
   min_hot: 1
   max_hot: 10
-  count_new: 4
-  count_hot: 4
+  count_new: 3
+  count_hot: 3
   min_password: 6
   max_fullname: 50
   max_address: 255
@@ -22,6 +22,7 @@ size:
   max_email: 200
   status: 0
   status_number: 1
+  list_image: 3
 
 account_type:
   admin: "admin"

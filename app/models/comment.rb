@@ -4,4 +4,5 @@ class Comment < ApplicationRecord
   validates :content, presence: true
   scope :select_comment, -> {select :id, :content, :account_id, :product_id}
   scope :show_comment_desc, -> {order created_at: :desc}
+  scope :select_comment_product, -> (id){where product_id: id}
 end

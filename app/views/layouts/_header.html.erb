@@ -85,10 +85,10 @@
                          <% end %>
                       </div>
                     </div>
-                       <%= text_field_tag :search, params[:search], class: "btn-input-search",
-                         placeholder: t("search_product") %>
+                    <%= text_field_tag :search, params[:search], class: "btn-input-search",
+                      placeholder: t("search_product_header") %>
                     <span class="input-group-btn btn-find-group">
-                       <%= submit_tag t("search"),:name => nil, class: "btn-search"%>
+                      <%= submit_tag t("search"),:name => nil, class: "btn-search"%>
                     </span>
                   </div>
                 <% end %>

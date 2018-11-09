@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_account!
 
   def load_cate
-    @categories = Category.select_category.create_desc.limit Settings.size.limit
+    @categories = Category.select_categories_parent.select_desc_parent
   end
 
   def load_product_new
