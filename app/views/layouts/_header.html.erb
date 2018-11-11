@@ -74,7 +74,7 @@
             <div class="site-search">
               <span class="adr-icon icon-search-complete visible-xs visible-sm"></span>
               <div class="ui-front">
-                <%= form_tag search_path, method: "get" do %>
+                <%= search_form_for @search, url: search_path do |f| %>
                   <div class="input-group" id="input-group1">
                     <div class="input-group-btn no-padding hidden-xs hidden-sm">
                       <div class="dropdown js-select-category">
@@ -85,10 +85,10 @@
                          <% end %>
                       </div>
                     </div>
-                    <%= text_field_tag :search, params[:search], class: "btn-input-search",
-                      placeholder: t("search_product_header") %>
+                    <%= f.search_field :name_or_description_cont, class: "btn-input-search",
+                      placeholder: t("search_product_header")%>
                     <span class="input-group-btn btn-find-group">
-                      <%= submit_tag t("search"),:name => nil, class: "btn-search"%>
+                      <%= f.submit t("search"), class: "btn-search" %>
                     </span>
                   </div>
                 <% end %>

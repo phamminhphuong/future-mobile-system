@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta content="text/html; charset = UTF-8" http-equiv="Content-Type" />
+    <style>
+      #table_email{
+        width: 500px;
+        min-height: 50px;
+      }
+
+      #table_email, thead, tr, td{
+        border: 1px solid black;
+      }
+
+      #title{
+        font-weight: bold;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      p{
+        font-size:14px;
+      }
+
+      #p_red{
+        float: right;
+        font-size: 15px;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><%= t "hi" %>, <%= @account.fullname %></h1>
+    <h3><%= t "order_information" %> : </h3>
+    <table id="table_email">
+      <thead>
+        <tr id="title">
+          <th><%= t "product_name" %></th>
+          <th><%= t "price" %></th>
+          <th><%= t "quantity" %></th>
+          <th><%= t "total_price" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order_details.each do |ord| %>
+          <tr>
+            <td><%= ord.product_name %></td>
+            <td><%= ord.price %></td>
+            <td><%= ord.quantity %></td>
+            <td><%= ord.total_price %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="4">
+            <p id="p_red">
+              <%= t "total" %> : <%= @price_total %> <%= t "usd" %>
+            </p>
+          </td>
+        </tr>
+     </tbody>
+    </table>
+    <p>
+      <%= t "thank_you_for_buying_the_product" %>
+    </p>
+    <p>
+      <%= t "we_will_ship_to_you_soon" %>
+    </p>
+  </body>
+</html>

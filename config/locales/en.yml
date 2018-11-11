@@ -288,3 +288,8 @@ en:
   price_more_than_10_million: "≥ 10.000.000d"
   bad_selection: "Bad Selection"
   price: "Price"
+  information_buy_product: "Information buy product"
+  thank_you_for_buying_the_product: "Thank you for buying the product."
+  we_will_ship_to_you_soon: "We will ship to you soon."
+  hi: "Hi"
+  order_information: "Order information"

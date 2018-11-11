@@ -16,6 +16,9 @@ class PaysController < ApplicationController
     @order1 = OrderCreateService.new session: session, product: @product, order: @order
     if @order.save
       @order1.create_order
+      @order_details = OrderDetail.select_order_detail_by_order @order
+      get_total
+      AccountMailer.send_email_order(current_account, @order_details, @price_total).deliver
       redirect_to root_path
       flash[:success] = t "order_success"
     else
@@ -43,5 +46,12 @@ class PaysController < ApplicationController
     return if current_account.present?
     flash[:danger] = t "sign_up_not_found"
     redirect_to login_url
+  end
+
+  def get_total
+    @price_total = 0
+    @order_details.each do |ord|
+      @price_total += ord.total_price
+    end
   end
 end

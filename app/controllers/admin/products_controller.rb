@@ -2,10 +2,10 @@ class Admin::ProductsController < Admin::BaseController
   before_action :load_product, except: %i(new index create show import)
   before_action :load_product_show, only: %i(show)
   before_action :load_category_manufacturer, except: %i(index show destroy import)
-  before_action :load_list_product, only: %i(import)
+  before_action :load_list_product, only: %i(index import)
+  before_action :set_search, only: %i(index import)
 
   def index
-    @q = Product.ransack params[:q]
     @products = @q.result.page(params[:page])
       .per Settings.size.size_page_admin
   end
@@ -100,9 +100,14 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def load_list_product
-    @products = Product.select_product
+    @products = Product.select_product.page(params[:page])
+      .per Settings.size.size_page_admin
     return if @products.present?
     flash[:danger] = t "not_product"
     redirect_to admin_products_url
+  end
+
+  def set_search
+    @q = Product.ransack params[:q]
   end
 end

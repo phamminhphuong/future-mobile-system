@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :load_product_new
   before_action :load_product_hot
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_account!
+  before_action :set_search
   alias_method  :current_user, :current_account
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -39,5 +41,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit :sign_up, keys: [:fullname, :phone, :address]
+  end
+
+  def set_search
+    @search = Product.ransack params[:q]
   end
 end

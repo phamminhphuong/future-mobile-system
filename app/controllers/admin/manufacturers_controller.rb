@@ -1,9 +1,9 @@
 class Admin::ManufacturersController < Admin::BaseController
   before_action :load_manufacturer, except: %i(new index create import)
-  before_action :load_list_manufacturer, only: %i(import)
+  before_action :load_list_manufacturer, only: %i(index import)
+  before_action :set_search, only: %i(index import)
 
   def index
-    @q = Manufacturer.ransack params[:q]
     @manufacturers = @q.result.page(params[:page])
       .per Settings.size.size_page_admin
   end
@@ -69,9 +69,14 @@ class Admin::ManufacturersController < Admin::BaseController
   end
 
   def load_list_manufacturer
-    @manufacturers = Manufacturer.select_manufacturer
+    @manufacturers = Manufacturer.select_manufacturer.page(params[:page])
+      .per Settings.size.size_page_admin
     return if @manufacturers.present?
     flash[:danger] = t "not_manufacturer"
     redirect_to admin_manufacturers_url
+  end
+
+  def set_search
+    @q = Manufacturer.ransack params[:q]
   end
 end
