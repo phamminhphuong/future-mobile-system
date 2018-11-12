@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   before_action :load_product_new
   before_action :load_product_hot
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_account!
   before_action :set_search
   alias_method  :current_user, :current_account
 

@@ -1,7 +1,7 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :load_category, except: %i(new index create import)
-  before_action :load_list_category, except: %i(index show destroy)
-  before_action :set_search, only: %i(index import)
+  before_action :load_list_category, except: %i(index show)
+  before_action :set_search, only: %i(index import destroy)
 
   def index
     @categories = @q.result.page(params[:page])
@@ -47,9 +47,10 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    if @category.destroy
+    begin
+      @category.destroy!
       flash[:success] = t "category_delete"
-    else
+    rescue
       flash[:danger] = t "cannot_delete_category"
     end
     redirect_to admin_categories_url
