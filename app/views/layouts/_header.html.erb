@@ -8,30 +8,9 @@
               <%= t "welcome" %>
             </marquee>
           </div>
-          <div class="yCmsContentSlot col-md-7 hidden-xs hidden-sm header--segment-right">
-            <div class="header--segment-item pull-right pop-hover js-pop-hover">
-              <a href="javascript:;" class="pop-hover-title" data-target="#" data-toggle="dropdown" role="button"
-                aria-haspopup="true" aria-expanded="false" class="pop-hover-title">
-                <%= image_tag "4.png" %>
-                <%= t "guest" %>
-              </a>
-              <div class="pop-hover-open">
-                <ul>
-                  <li class="hotline_group">
-                    <%= image_tag "4.png" %>
-                    <div class="hotline_group--right">
-                      <div>Hotline</div>
-                      <span class="highlight-color">
-                        <%= t "guest" %></span>
-                    </div>
-                  </li>
-                </ul>
-                <ul>
-                  <li> <%= t "guest" %></li>
-                  <li> <%= t "guest" %></li>
-                </ul>
-              </div>
-            </div>
+          <div class="yCmsContentSlot col-xs-12 col-md-4 header--segment-left"></div>
+          <div class="yCmsContentSlot col-xs-12 col-md-3 header--segment-left text-right">
+            <%= t "languages" %> <%= link_to t("en"), locale:"en" %> | <%= link_to t("vi"), locale:"vi" %>
           </div>
         </div>
       </div>
@@ -154,7 +133,7 @@
             </li>
             <li class="col-sm-12 col-md-2">
               <div class="nav-cart">
-                <%= link_to image_tag("8.png"), card_path %>
+                <%= link_to image_tag("8.png"), cart_path %>
                 <a href="#" class="mini-cart-link js-mini-cart-link" data-mini-cart-url="#"
                   data-mini-cart-refresh-url="#" data-mini-cart-name="#"
                   data-mini-cart-empty-name="<%= t "empty_cart" %>" data-mini-cart-items-text="Items">

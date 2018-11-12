@@ -13,12 +13,12 @@ class Account < ApplicationRecord
   validates :password, presence: true,
     length: {minimum: Settings.size.min_password}, allow_nil: true
 
-    def self.from_omniauth auth
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |account|
-        account.email = auth.info.email
-        account.password = Devise.friendly_token[0,20]
-        account.password_confirmation = Devise.friendly_token[0,20]
-        account.fullname = auth.info.name
-      end
+  def self.from_omniauth auth
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |account|
+      account.email = auth.info.email
+      account.password = Devise.friendly_token[0,20]
+      account.password_confirmation = Devise.friendly_token[0,20]
+      account.fullname = auth.info.name
     end
+  end
 end

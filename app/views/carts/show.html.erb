@@ -4,7 +4,7 @@
     <div class="cart">
       <div class="cart-header">
         <a class="cart-title" href="gio-hang">
-          <span class="cart-subtitle"><%= t "my_card" %></span>
+          <span class="cart-subtitle"><%= t "my_cart" %></span>
           <span class="bracket">(</span>
           <span class="js-cart-total-unit"><%= t "quantity" %></span>
           <span><%= t "product" %></span>
@@ -21,8 +21,8 @@
             <div class="cart-product__subtotal"><%= t "amount" %></div>
           </div>
           <div class="cart-products__body">
-              <% @order_details.each do |product, quantity| %>
-              <div class="cart-product  entry-item-1">
+            <% @products.each do |product| %>
+              <div class="cart-product entry-item-1">
                 <div class="cart-product__item__thumbnail">
                   <%= image_tag product.images.first.image_link.url, class: "image_home" %>
                 </div>
@@ -43,19 +43,31 @@
                 </div>
                 <div class="cart-product__quantity">
                   <div class="item__quantity">
-                    <%= quantity %>
+                   <%= session[:cart][product.id.to_s] %>
                   </div>
                 </div>
                 <div class="cart-product__subtotal">
                   <div class="item__total js-item-total hidden-xs">
-                    <%= quantity * product.price %>
+                    <%= session[:cart][product.id.to_s] * product.price %>
                     <%= Settings.curr_unit.price %>
                   </div>
                 </div>
                 <div class="js-item-warnings">
                 </div>
               </div>
-              <% end %>
+            <% end %>
+          </div>
+          <hr id="line_pay">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sx-6">
+            <%= paginate @products %>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sx-6 text-right">
+              <strong><br><%= t "total_price" %>
+                <%= @total %>
+                <%= Settings.curr_unit.price %>
+              </strong>
+            </div>
           </div>
         </div>
       </div>

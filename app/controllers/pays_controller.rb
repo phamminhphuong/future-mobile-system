@@ -4,18 +4,23 @@ class PaysController < ApplicationController
 
   def show
     @order = Order.new
-    @order_details = {}
-    products = Product.find session[:cart].keys
-    products.each do |product|
-      @order_details[product] = session[:cart][product.id.to_s]
+    if session[:cart].present?
+      @products = Product.find_product(session[:cart].keys)
+      .page(params[:page])
+      .per Settings.size.size_page_order
+    else
+      flash[:danger] = t "no_item"
+      redirect_to root_path
     end
+    show_total_price_view
   end
 
   def create
     @order = Order.new order_params
-    @order1 = OrderCreateService.new session: session, product: @product, order: @order
+    orders = OrderCreateService.new session: session, order: @order
     if @order.save
-      @order1.create_order
+      orders.create_order
+      session[:cart] = nil
       @order_details = OrderDetail.select_order_detail_by_order @order
       get_total
       SendEmailJob.set(wait: Settings.time.time_send_email.seconds).perform_later(
@@ -33,28 +38,48 @@ class PaysController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:address, :phone).merge(status: Settings.size.status, account_id: current_account.id)
+    @order_details = {}
+    products = Product.find session[:cart].keys
+    products.each do |product|
+      @order_details[product] = session[:cart][product.id.to_s]
+    end
+    total_price
+    params.require(:order).permit(:address, :phone).merge(status: Settings.size.status, account_id: current_account.id, total: @total)
   end
 
   def load_product
-    session[:cart].each do |product_id|
-      @product = Product.find_by id: product_id
-      return if @product.present?
+    @products = Product.find_product session[:cart].keys.map(&:to_i)
+    return if @products.present?
       flash[:danger] = t "product_not_found"
       redirect_to root_path
-    end
   end
 
   def authenticate_account
     return if current_account.present?
     flash[:danger] = t "sign_up_not_found"
-    redirect_to login_url
+    redirect_to new_account_session_path
   end
 
   def get_total
     @price_total = Settings.size.price_total_start
     @order_details.each do |ord|
       @price_total += ord.total_price
+    end
+  end
+
+  def total_price
+    @total = Settings.order.total
+    @order_details.each do |product, quantity|
+      quantity * product.price
+      @total = @total + (quantity * product.price)
+    end
+  end
+
+  def show_total_price_view
+    @total = Settings.order.total
+    products = Product.find_product session[:cart].keys
+    products.each do |product|
+      @total = @total + session[:cart][product.id.to_s] * product.price
     end
   end
 end

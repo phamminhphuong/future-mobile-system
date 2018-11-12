@@ -9,7 +9,6 @@
 //= require admin/bootstrap.min
 //= require admin/adminlte
 //= require admin/ckeditor
-//= require showtable
 //= require image_upload
 //= require highcharts
 //= require chartkick

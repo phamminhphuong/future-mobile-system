@@ -25,6 +25,7 @@ class Product < ApplicationRecord
   scope :select_products, -> {select :id, :name, :quantity, :price,
     :description, :hot, :category_id, :manufacturer_id}
   scope :show_image, -> (id){where product_id: id}
+  scope :find_product, -> (id){where id: id }
   delegate :name, to: :manufacturer, prefix: true
   delegate :name, to: :category, prefix: true
 
