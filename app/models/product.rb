@@ -31,14 +31,6 @@ class Product < ApplicationRecord
   private
 
   class << self
-    def search(key)
-      if key
-        where("name LIKE ?", "%#{key}%").select_products.show_product_desc
-      else
-        select_products.show_product_desc
-      end
-    end
-
     def import file
       import_file file, ["name", "quantity", "price", "description", "hot", "category_id", "manufacturer_id"]
     end

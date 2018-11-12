@@ -10,7 +10,8 @@ class StaticPagesController < ApplicationController
   def about; end
 
   def search
-    @products = Product.search params[:search]
+    @products = @search.result.page(params[:page])
+      .per Settings.size.size_page
     @product_search = @products.size
   end
 

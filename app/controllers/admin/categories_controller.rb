@@ -1,9 +1,9 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :load_category, except: %i(new index create import)
   before_action :load_list_category, except: %i(index show destroy)
+  before_action :set_search, only: %i(index import)
 
   def index
-    @q = Category.ransack params[:q]
     @categories = @q.result.page(params[:page])
       .per Settings.size.size_page_admin
   end
@@ -69,9 +69,14 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def load_list_category
-    @categories = Category.select_category
+    @categories = Category.select_category.page(params[:page])
+      .per Settings.size.size_page_admin
     return if @categories.present?
     flash[:danger] = t "not_category"
     redirect_to admin_categories_url
+  end
+
+  def set_search
+    @q = Category.ransack params[:q]
   end
 end

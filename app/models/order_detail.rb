@@ -10,6 +10,7 @@ class OrderDetail < ApplicationRecord
     :order_id, :product_id}
   scope :created_between, lambda {|start_date, end_date|
     where "date(created_at) >= ? AND date(created_at) <= ?", start_date, end_date}
+  scope :select_order_detail_by_order, -> (order_id){where order_id: order_id}
   delegate :id, :name, :price, to: :product, prefix: true
 
   private
