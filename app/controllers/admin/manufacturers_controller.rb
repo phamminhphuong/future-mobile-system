@@ -1,7 +1,7 @@
 class Admin::ManufacturersController < Admin::BaseController
   before_action :load_manufacturer, except: %i(new index create import)
-  before_action :load_list_manufacturer, only: %i(index import)
-  before_action :set_search, only: %i(index import)
+  before_action :load_list_manufacturer, only: %i(index import destroy)
+  before_action :set_search, only: %i(index import destroy)
 
   def index
     @manufacturers = @q.result.page(params[:page])
@@ -47,9 +47,10 @@ class Admin::ManufacturersController < Admin::BaseController
  end
 
   def destroy
-    if @manufacturer.destroy
+    begin
+      @manufacturer.destroy!
       flash[:success] = t "manufacturer_delete"
-    else
+    rescue
       flash[:danger] = t "cannot_delete_manufacturer"
     end
     redirect_to admin_manufacturers_url

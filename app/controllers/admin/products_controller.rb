@@ -2,8 +2,8 @@ class Admin::ProductsController < Admin::BaseController
   before_action :load_product, except: %i(new index create show import)
   before_action :load_product_show, only: %i(show)
   before_action :load_category_manufacturer, except: %i(index show destroy import)
-  before_action :load_list_product, only: %i(index import)
-  before_action :set_search, only: %i(index import)
+  before_action :load_list_product, only: %i(index import destroy)
+  before_action :set_search, only: %i(index import destroy)
 
   def index
     @products = @q.result.page(params[:page])
@@ -64,9 +64,10 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def destroy
-    if @product.destroy
+    begin
+      @product.destroy!
       flash[:success] = t "successfully_delete"
-    else
+    rescue
       flash[:danger] = t "cannot_delete_product"
     end
     redirect_to admin_products_url
