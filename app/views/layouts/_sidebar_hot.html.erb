@@ -8,17 +8,63 @@
       <div class="facet-group-content js-facet-form ">
         <ul class="facet-list js-facet-list facet-list-scroll" id="siderbar-hot">
           <% @product_hot.each do |pr| %>
-            <li data-label="BEAUTY CONCEPT">
-              <span class="facet__text">
-                <%= link_to pr do %>
-                  <%= image_tag "#{pr.images.first.image_link}", class: "image_home" %>
-                  <br>
-                  <span class="name_product"><%= pr.name %></span>
-                <% end %>
-                <span class="facet__value__count"></span>
-              </span>
-            </li>
+          <li data-label="BEAUTY CONCEPT">
+            <span class="facet__text">
+              <%= link_to pr do %>
+              <%= image_tag "#{pr.images.first.image_link}", class: "image_home" %>
+              <br>
+              <span class="name_product">
+                <%= pr.name %></span>
+              <% end %>
+              <span class="facet__value__count"></span>
+            </span>
+          </li>
           <% end %>
+        </ul>
+      </div>
+      <hr>
+      <div class="facet-group-title">
+        <a href="javascript:;">
+          <%= t "product_by_price" %>
+        </a>
+      </div>
+      <div class="facet-group-content js-facet-form ">
+        <ul class="facet-list js-facet-list">
+          <li>
+            <span class="facet__text">
+              <%= link_to products_price_url(value: 1) do %>
+                <%= t "price_5_hundred" %>
+              <% end %>
+            </span>
+          </li>
+          <li>
+            <span class="facet__text">
+              <%= link_to products_price_url(value: 2) do %>
+                <%= t "price_2_million" %>
+              <% end %>
+            </span>
+          </li>
+          <li>
+            <span class="facet__text">
+              <%= link_to products_price_url(value: 3) do %>
+                <%= t "price_5_million" %>
+              <% end %>
+            </span>
+          </li>
+          <li>
+            <span class="facet__text">
+              <%= link_to products_price_url(value: 4) do %>
+                <%= t "price_10_million" %>
+              <% end %>
+            </span>
+          </li>
+          <li>
+            <span class="facet__text">
+              <%= link_to products_price_url(value: 5) do %>
+                <%= t "price_more_than_10_million" %>
+              <% end %>
+            </span>
+          </li>
         </ul>
       </div>
     </div>

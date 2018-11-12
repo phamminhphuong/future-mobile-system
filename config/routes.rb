@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/card", to: "cards#show"
   get "/pay", to: "pays#show"
   post "/pay", to: "pays#create", as: "checkout"
+  get "/products/price", to: "products#price"
   resources :categories
   resources :products do
     resources :comments
