@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
   def price
     @products_price = Product.show_product_price(@price_begin, @price_end).page(params[:page])
       .per Settings.size.size_page
+    @order_detail  = current_order.order_details.new
   end
 
   private

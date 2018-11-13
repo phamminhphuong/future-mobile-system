@@ -22,21 +22,13 @@
                   <%= pro.price %>
                   <%= Settings.curr_unit.price %>
                 </span>
-                 <%= f.hidden_field :quantity, value: 1, min: 1, class: "form-control" %>
+                <%= f.hidden_field :quantity, value: Settings.size.value,
+                  min: Settings.size.min_value, class: "form-control" %>
               </div>
               <%= f.submit t("add_to_cart"), class: "btn btn-primary btn-sm" %>
             </div>
           </div>
         <% end %>
-      </div>
-    </div>
-    <div id="addToCartTitle" class="display-none">
-      <div class="add-to-cart-header">
-        <div class="headline">
-          <span class="headline-text">
-            <%= t "shopping_cart" %>
-          </span>
-        </div>
       </div>
     </div>
     <% end %>
