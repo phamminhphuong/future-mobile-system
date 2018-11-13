@@ -11,5 +11,6 @@ module FutureMobileSystem
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.autoload_paths += %W(#{config.root}/app/services)
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.exceptions_app = self.routes
   end
 end

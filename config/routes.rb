@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   devise_for :accounts, controllers: {
     omniauth_callbacks: "accounts/omniauth_callbacks"
   }
+  # unless Rails.application.config.consider_all_requests_local
+    match '404', via: :all, to: 'errors#error_404'
+    match '422', via: :all, to: 'errors#error_422'
+    match '500', via: :all, to: 'errors#error_500'
+    # end
   root "static_pages#home"
   get "/help", to: "static_pages#help"
   get "/about", to: "static_pages#about"
