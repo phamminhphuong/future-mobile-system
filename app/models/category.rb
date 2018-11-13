@@ -6,8 +6,9 @@ class Category < ApplicationRecord
     length: {maximum: Settings.size.length_name_category}
   scope :select_category, -> {select :id, :name, :parent_id}
   scope :create_desc, -> {order created_at: :desc}
-  scope :select_categories_parent, ->(parent_id){where parent_id: 0}
+  scope :select_categories_parent, ->(parent_id){where parent_id: nil}
   scope :select_desc_parent, -> {order parent_id: :asc}
+  scope :select_category_create, ->{where "parent_id IS NOT NULL"}
 
   private
 

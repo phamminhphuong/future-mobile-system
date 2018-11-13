@@ -35,9 +35,10 @@ class Admin::AccountsController < Admin::BaseController
   end
 
   def destroy
-    if @account.destroy
+    begin
+      @account.destroy!
       flash[:success] = t "account_delete"
-    else
+    rescue
       flash[:danger] = t "cannot_remove_account"
     end
     redirect_to admin_accounts_url

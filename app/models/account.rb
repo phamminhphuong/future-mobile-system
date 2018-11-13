@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :omniauthable, omniauth_providers: %i(google_oauth2)
-  has_many :orders
+  has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   NUMBER_REGEX = /\d[0-9]\)*\z/

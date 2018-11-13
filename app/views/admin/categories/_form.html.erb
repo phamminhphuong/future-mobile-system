@@ -8,7 +8,7 @@
     <div class="form-group">
       <%= f.label :parent_id %>
       <%= f.select :parent_id, @categories.collect {|pr| [pr.name, pr.id]},
-        {}, class: "form-control" %>
+        {include_blank: true}, class: "form-control" %>
     </div>
   </div>
   <div class="box-footer">

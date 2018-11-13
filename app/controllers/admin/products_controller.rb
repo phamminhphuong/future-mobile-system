@@ -96,16 +96,13 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def load_category_manufacturer
-    @categories = Category.select_category
+    @categories = Category.select_category_create
     @manufacturers = Manufacturer.select_manufacturer
   end
 
   def load_list_product
     @products = Product.select_product.page(params[:page])
       .per Settings.size.size_page_admin
-    return if @products.present?
-    flash[:danger] = t "not_product"
-    redirect_to admin_products_url
   end
 
   def set_search

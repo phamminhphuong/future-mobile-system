@@ -19,8 +19,9 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def statistic
-    @order_details = OrderDetail.created_between params[:start_date],
-      params[:end_date]
+    @order_details = OrderDetail.created_between(params[:start_date],
+      params[:end_date]).page(params[:page])
+      .per Settings.size.size_page_admin
     get_total
     respond_to do |format|
       format.html
