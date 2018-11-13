@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :accounts, controllers: {
     omniauth_callbacks: "accounts/omniauth_callbacks"
   }
+  get "/404", to: "errors#not_found"
+  get "/422", to: "errors#unacceptable"
+  get "/500", to: "errors#internal_error"
   root "static_pages#home"
   get "/help", to: "static_pages#help"
   get "/about", to: "static_pages#about"
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   get "/search", to: "static_pages#search"
   get "/contact", to: "static_pages#contact"
   get "/introduct", to: "static_pages#introduct"
-  get "/card", to: "cards#show"
+  get "/cart", to: "carts#show"
   get "/pay", to: "pays#show"
   post "/pay", to: "pays#create", as: "checkout"
   get "/products/price", to: "products#price"
@@ -18,7 +21,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :order_details
-  resources :cards, only: %i(show destroy)
+  resources :carts, only: %i(show destroy)
   namespace :admin do
     get "dasboard/index", to: "dasboard#index"
     resources :accounts

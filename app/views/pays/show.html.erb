@@ -1,24 +1,23 @@
 <% provide :title, t("pay") %>
 <div class="col-xs-12 col-sm-12 col-md-12 checkout-main">
-    <div id="checkoutSummaryInformation1">
-     <% if session[:cart].present? %>
+  <div id="checkoutSummaryInformation1">
+    <% if session[:cart].present? %>
       <h2 class="checkout-title">
         <span class="visible-xs-inline"><i class="adr-icon icon-black-cart"></i></span> Order
         <span class="sidebar-checkout-title__quanity"> (<%= pluralize session[:cart].count, t("product") %>)</span>
       </h2>
        <%= render "shared/error_messages_orders" %>
       <div class="checkout-block clearfix">
-        <% @order_details.each do |product, quantity| %>
+        <% @products.each do |product| %>
           <ul class="sidebar-product__list" id="right-sidebar-product__list">
             <div class="sidebar-product__item no-border visible-xs">
             </div>
-            <div class="sidebar-product__item ">
+            <div class="sidebar-product__item">
               <div class="row">
                 <div class="col-xs-3">
                   <div class="sidebar-product__item-thumb">
                     <%= image_tag product.images.first.image_link.url, class: "image_home" %>
                   </div>
-
                 </div>
                 <div class="col-xs-5">
                   <div class="sidebar-product__item-info">
@@ -33,19 +32,33 @@
                     </li>
                     <li>
                       <b><%= t ("quantity_pay") %></b>
-                      <%= quantity %>
+                      <%= session[:cart][product.id.to_s] %>
                     </li>
                     <li>
                       <b><%= t ("total_pay") %></b>
-                      <%= product.price * quantity  %>
+                      <%= product.price *  session[:cart][product.id.to_s] %>
+                      <%= Settings.curr_unit.price %>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
           </ul>
+          <hr id="line_pay">
         <% end %>
-    </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">
+          <%= paginate @products %>
+        </div>
+        <div class="col-xs-6s col-sm-6 col-md-6 text-right">
+          <strong>
+            <%= t "total_price" %>
+            <%= @total %>
+            <%= Settings.curr_unit.price %>
+          </strong>
+        </div>
+      </div>
     <% end %>
   </div>
   <div id="checkoutAddressWrapper">

@@ -35,6 +35,7 @@ size:
   price_begin_five: 10000000
   price_end_file: 500000000
   price_total_start: 0
+  size_page_order: 3
 account_type:
   admin: "admin"
 curr_unit:
@@ -48,3 +49,5 @@ value_price:
   five: "5"
 time:
   time_send_email: 20
+order:
+  total: 0
