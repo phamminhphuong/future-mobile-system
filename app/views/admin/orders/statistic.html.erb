@@ -41,7 +41,7 @@
               <tr>
                 <td><%= ord.product_id %></td>
                 <td><%= ord.product_name %></td>
-                <td><%= image_tag ord.images.first.image_link.url, class: "image_product1" %></td>
+                <td><%= image_tag ord.images.first.image_link.url, class: "image_product2" %></td>
                 <td><%= ord.price %></td>
                 <td><%= ord.quantity %></td>
                 <td><%= ord.total_price %></td>
@@ -49,6 +49,9 @@
             <% end %>
           </tbody>
         </table>
+        <div class="paginate_page">
+          <%= paginate @order_details %>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -63,7 +66,10 @@
   </div>
 </div>
 <div class="box-footer">
-  <%= link_to t("excel_by_xml"), admin_statistic_url(format: "xls", start_date: params[:start_date], end_date: params[:end_date]) %> |
+  <%= link_to t("export_excel"), admin_statistic_url(format: "xls", start_date: params[:start_date], end_date: params[:end_date]) %> |
   <%= link_to t("list"), admin_orders_url %>
 </div>
-<%= line_chart OrderDetail.group(:created_at).sum(:total_price) %>
+<br>
+<h4><%= t "statistic_chart_by_total_price" %></h4>
+<br>
+<%= line_chart OrderDetail.group(:created_at).sum(:total_price),  xtitle: t("time"), ytitle: t("total_price") %>

@@ -18,7 +18,10 @@ class PaysController < ApplicationController
       @order1.create_order
       @order_details = OrderDetail.select_order_detail_by_order @order
       get_total
-      AccountMailer.send_email_order(current_account, @order_details, @price_total).deliver
+      SendEmailJob.set(wait: Settings.time.time_send_email.seconds).perform_later(
+        account: current_account,
+        order: @order,
+        total: @price_total)
       redirect_to root_path
       flash[:success] = t "order_success"
     else
@@ -49,7 +52,7 @@ class PaysController < ApplicationController
   end
 
   def get_total
-    @price_total = 0
+    @price_total = Settings.size.price_total_start
     @order_details.each do |ord|
       @price_total += ord.total_price
     end

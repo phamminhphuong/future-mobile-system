@@ -34,6 +34,7 @@ size:
   price_end_four: 10000000
   price_begin_five: 10000000
   price_end_file: 500000000
+  price_total_start: 0
 account_type:
   admin: "admin"
 curr_unit:
@@ -45,3 +46,5 @@ value_price:
   three: "3"
   four: "4"
   five: "5"
+time:
+  time_send_email: 20
