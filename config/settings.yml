@@ -12,6 +12,8 @@ size:
   min_price: 0
   min_hot: 1
   max_hot: 10
+  min_value: 1
+  value: 1
   count_new: 3
   count_hot: 3
   min_password: 6
@@ -25,15 +27,15 @@ size:
   list_image: 3
   price_begin: 0
   price_end: 0
-  price_end_one: 500000
-  price_begin_two: 500000
-  price_end_two: 2000000
-  price_begin_three: 2000000
-  price_end_three: 5000000
-  price_begin_four: 5000000
-  price_end_four: 10000000
-  price_begin_five: 10000000
-  price_end_file: 500000000
+  price_end_one: 500
+  price_begin_two: 500
+  price_end_two: 2000
+  price_begin_three: 2000
+  price_end_three: 5000
+  price_begin_four: 5000
+  price_end_four: 10000
+  price_begin_five: 10000
+  price_end_file: 500000
   price_total_start: 0
   size_page_order: 3
 account_type:
