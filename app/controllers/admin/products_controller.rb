@@ -101,7 +101,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def load_list_product
-    @products = Product.select_product.page(params[:page])
+    @products = Product.select_products.page(params[:page])
       .per Settings.size.size_page_admin
   end
 
