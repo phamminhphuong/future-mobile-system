@@ -17,15 +17,13 @@ class Product < ApplicationRecord
   scope :show_product_hot_desc, -> {order hot: :desc}
   scope :select_manufacturer, -> {select :id, :name}
   scope :select_category, -> {select :id, :name}
-  scope :select_product, -> {select :id, :name, :quantity, :price, :description,
-    :hot, :category_id, :manufacturer_id}
   scope :show_product_price, lambda {|price_begin, price_end|
     where "price >= ? AND price <= ?", price_begin, price_end}
   scope :show_detail, -> (id){where id: id}
   scope :select_products, -> {select :id, :name, :quantity, :price,
     :description, :hot, :category_id, :manufacturer_id}
   scope :show_image, -> (id){where product_id: id}
-  scope :find_product, -> (id){where id: id }
+  scope :find_product, -> (id){where id: id}
   delegate :name, to: :manufacturer, prefix: true
   delegate :name, to: :category, prefix: true
 
