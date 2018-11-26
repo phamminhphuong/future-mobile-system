@@ -1,107 +1,476 @@
 <% provide :title, t("product_detail") %>
 <div class="row" id="product-list">
-  <div class="col-md-2 col-sm-2">
-    <div class="gallery-thumbs-v2">
-      <div id="detailImageThumbs" class="swiper-container swiper-container-vertical">
-        <div class="swiper-wrapper js-galleryv2-thumbnail__item gallery-thumbnail__item js-gallery-thumbnail__item active">
-          <% @images.each do |img| %>
-            <div class="gallery-thumbnail__item gallery-thumbnail__item-image swiper-slide active swiper-slide-next" id="list_image">
-              <a href="#" class="small-thumbnail">
-                <%= image_tag img.image_link.url, class: "image-list" %>
-              </a>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="product-detail__left" id="header-position">
-    <% @details.each do |de| %>
-    <div class="row">
-      <div class="col-sm-3 product-detail__info-block">
-        <div class="product-detail__gallery js-product-detail__gallery">
-          <div class="product-gallery__stage">
-            <div class="product-gallery__stopper"></div>
-            <%= image_tag de.images.first.image_link.url, class: "image_product_active" %>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-5 product-detail__info product-detail__info-block" id="description">
-        <div class="hidden-xs">
-          <div class="product-detail__title">
-            <h3><%= de.name %></h3>
-            <h5>
-              <%= t "share" %><br><br>
-              <%= social_share_button_tag de.name %>
-            </h5>
-          </div>
-        </div>
-        <div class="product-detail__short-des js-height-toggle-description" style="max-height: none;">
-          <div style="height: 100px;">
-            <ul>
-              <li>
-                <%= t "manufacture" %>
-                <%= de.manufacturer.name %>
-              </li>
-              <li>
-                <%= t "hot_product" %>
-                <%= de.hot == Settings.size.min_hot ? t("purchased") : t("good_product") %>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="product-detail__price">
-          <div class="product-detail__price-info">
-            <%= t "price_show" %>
-            <span class="price-info__sale">
-              <%= de.price %>
-              <%= Settings.curr_unit.price %>
-            </span>
-          </div>
-        </div>
-        <div class="product-detail__order addtocart-component">
-          <div class="row">
-            <%= form_for @order_detail, remote: true do |f| %>
-            <div class="clearfix visible-md visible-lg"></div>
-            <div class="col-xs-12 col-sm-5 col-md-5">
-              <%= f.hidden_field :product_id, value: de.id %>
-              <%= f.hidden_field :quantity, value: Settings.size.value,
+	<div class="col-md-2 col-sm-2">
+		<div class="gallery-thumbs-v2">
+			<div id="detailImageThumbs" class="swiper-container swiper-container-vertical">
+				<div class="swiper-wrapper js-galleryv2-thumbnail__item gallery-thumbnail__item js-gallery-thumbnail__item active">
+					<% @images.each do |img| %>
+					<div class="gallery-thumbnail__item gallery-thumbnail__item-image swiper-slide active swiper-slide-next" id="list_image">
+						<a href="#" class="small-thumbnail">
+							<%= image_tag img.image_link.url, class: "image-list" %>
+						</a>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="product-detail__left" id="header-position">
+		<div class="row">
+			<div class="col-sm-3 product-detail__info-block">
+				<div class="product-detail__gallery js-product-detail__gallery">
+					<div class="product-gallery__stage">
+						<div class="product-gallery__stopper"></div>
+						<%= image_tag @detail.images.first.image_link.url, class: "image_product_active" %>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-5 product-detail__info product-detail__info-block" id="description">
+				<div class="hidden-xs">
+					<div class="product-detail__title">
+						<h3>
+							<%= @detail.name %>
+						</h3>
+						<h5>
+							<%= t "share" %><br><br>
+							<%= social_share_button_tag @detail.name %>
+						</h5>
+					</div>
+				</div>
+				<div class="product-detail__short-des js-height-toggle-description" style="max-height: none;">
+					<div style="height: 100px;">
+						<ul>
+							<li>
+								<%= t "manufacture" %>
+								<%= @detail.manufacturer.name %>
+							</li>
+							<li>
+								<%= t "hot_product" %>
+								<%= @detail.hot == Settings.size.min_hot ? t("purchased") : t("good_product") %>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="product-detail__price">
+					<div class="product-detail__price-info">
+						<%= t "price_show" %>
+						<span class="price-info__sale">
+							<%= @detail.price %>
+						</span>
+					</div>
+				</div>
+				<div class="product-detail__order addtocart-component">
+					<div class="row">
+						<%= form_for @order_detail, remote: true do |f| %>
+						<div class="clearfix visible-md visible-lg"></div>
+						<div class="col-xs-12 col-sm-5 col-md-5">
+							<%= f.hidden_field :product_id, value: @detail.id %>
+							<%= f.hidden_field :quantity, value: Settings.size.value,
                 min: Settings.size.min_value, class: "form-control" %>
-              <%= f.submit t("add_to_cart"), class: "btn btn-primary btn-sm" %>
-            </div>
-            <% end %>
-          </div>
-          <div class="product-detail__right--mobile"></div>
-        </div>
-      </div>
-      <div class="col-sm-12 detail__info">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="panel panel-product-detail">
-            <div class="panel-heading">
-              <%= t "description" %>
-            </div>
-            <div class="panel-body">
-              <div class="product-detail__description" style="padding-left: 17px;">
-                <%= de.description %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-    <div class="row">
-      <div class="comment-form">
-        <%= render "comments/form" %>
-      </div>
-      <div class="col-md-10 col-md-offset-1">
-        <div class="comments">
-          <%= render partial: "comment", collection: @comments %>
-        </div>
-      </div>
-    </div>
-    <div class="text-center">
-      <%= paginate @comments %>
-    </div>
-  </div>
+							<%= f.submit t("add_to_cart"), class: "btn btn-primary btn-sm" %>
+						</div>
+						<% end %>
+					</div>
+					<div class="product-detail__right--mobile"></div>
+				</div>
+			</div>
+			<div class="col-sm-12 detail__info">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="panel panel-product-detail">
+						<div class="panel-heading">
+							<%= t "description" %>
+						</div>
+						<div class="panel-body">
+							<div class="product-detail__description" style="padding-left: 17px;">
+								<%= @detail.description %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="comment-form">
+				<%= render "comments/form" %>
+			</div>
+			<div class="col-md-10 col-md-offset-1">
+				<div class="comments">
+					<%= render partial: "comment", collection: @comments %>
+				</div>
+			</div>
+		</div>
+		<div class="text-center">
+			<%= paginate @comments %>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+	<div class="col-md-8">
+	  	<div class="div-title-product-eq">
+		  <% if @product_likes.present? %>
+				<h2 class="title-product-eq"> Sản phẩm tương tự </h2>
+			<% end %>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="product-list__container">
+	<div class="row">
+		<% @product_likes.each do |pro| %>
+		<div class="col-xs-6 col-sm-4 col-lg-3 product-item__wrapper product-item__wrapper--hover">
+			<div class="product-item__placeholder hidden-sm hidden-xs"></div>
+			<div class="product-item">
+				<div class="product-item__container">
+					<div class="product-item__thumbnail">
+						<%= link_to pro do %>
+						<%= image_tag pro.images.first.image_link.url, class: "image_product" %>
+						<% end %>
+					</div>
+					<div class="text-center">
+						<%= pro.name %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="col-sm-12" id="panel-review-container">
+	<div class="panel panel-product-detail panel-product-comment">
+		<h2 class="panel-heading"> Đánh giá về sản phẩm </h2>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<div id="js-rating-overview" data-number="5">
+						<div class="product-detail__rating-overview__comment">
+							<div class="row p-b-8">
+								<div class="col-md-12 col-xs-12 p-b-8">
+									<div class="title-rate">Đánh giá tổng quan</div>
+								</div>
+								<div class="col-xs-12 col-md-12 text-center">
+									<div class="title__rating-counter"><strong>4,8</strong></div>
+								</div>
+								<div class="col-md-12 col-xs-12 text-center">
+									<div class="adr-rating-view adr-rating-view-sm text-right">
+										<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+											 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+										<div class="rating-view-active" style="width: 96.0%">
+											<div class="rating-view-active-container" data-vale="24.0"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+												 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="rating-overview__progess-rate hidden-xs">
+								<div class="rating-overview__wrap-progress">
+									<div class="row">
+										<div class="col-sm-3 col-md-4">
+											<div class="rating-overview__count-star">
+												<div class="adr-rating-view adr-rating-view-sm">
+													<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+														 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													<div class="rating-view-active" style="width: 100%" data-entry="4">
+														<div class="rating-view-active-container"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+															 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-7 col-md-6">
+											<div class="rating-overview__progress">
+												<div title="Có 4 đánh giá" style="width: 80.0%;" class="rating-overview__progress-bar"></div>
+											</div>
+										</div>
+										<div class="col-sm-2 col-md-2">
+											<div class="rating-overview__count-user-rate" data-value="0.8"> 80%</div>
+										</div>
+									</div>
+								</div>
+								<div class="rating-overview__wrap-progress">
+									<div class="row">
+										<div class="col-sm-3 col-md-4">
+											<div class="rating-overview__count-star">
+												<div class="adr-rating-view adr-rating-view-sm">
+													<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+														 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													<div class="rating-view-active" style="width: 80%" data-entry="1">
+														<div class="rating-view-active-container"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+															 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-7 col-md-6">
+											<div class="rating-overview__progress">
+												<div title="Có 1 đánh giá" style="width: 20.0%;" class="rating-overview__progress-bar"></div>
+											</div>
+										</div>
+										<div class="col-sm-2 col-md-2">
+											<div class="rating-overview__count-user-rate" data-value="0.2"> 20%</div>
+										</div>
+									</div>
+								</div>
+								<div class="rating-overview__wrap-progress">
+									<div class="row">
+										<div class="col-sm-3 col-md-4">
+											<div class="rating-overview__count-star">
+												<div class="adr-rating-view adr-rating-view-sm">
+													<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+														 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													<div class="rating-view-active" style="width: 60%" data-entry="0">
+														<div class="rating-view-active-container"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+															 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-7 col-md-6">
+											<div class="rating-overview__progress">
+												<div title="Có 0 đánh giá" style="width: 0.0%;" class="rating-overview__progress-bar"></div>
+											</div>
+										</div>
+										<div class="col-sm-2 col-md-2">
+											<div class="rating-overview__count-user-rate" data-value="0.0"> 0%</div>
+										</div>
+									</div>
+								</div>
+								<div class="rating-overview__wrap-progress">
+									<div class="row">
+										<div class="col-sm-3 col-md-4">
+											<div class="rating-overview__count-star">
+												<div class="adr-rating-view adr-rating-view-sm">
+													<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+														 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													<div class="rating-view-active" style="width: 40%" data-entry="0">
+														<div class="rating-view-active-container"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+															 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-7 col-md-6">
+											<div class="rating-overview__progress">
+												<div title="Có 0 đánh giá" style="width: 0.0%;" class="rating-overview__progress-bar"></div>
+											</div>
+										</div>
+										<div class="col-sm-2 col-md-2">
+											<div class="rating-overview__count-user-rate" data-value="0.0"> 0%</div>
+										</div>
+									</div>
+								</div>
+								<div class="rating-overview__wrap-progress">
+									<div class="row">
+										<div class="col-sm-3 col-md-4">
+											<div class="rating-overview__count-star">
+												<div class="adr-rating-view adr-rating-view-sm">
+													<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+														 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													<div class="rating-view-active" style="width: 20%" data-entry="0">
+														<div class="rating-view-active-container"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
+															 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-7 col-md-6">
+											<div class="rating-overview__progress">
+												<div title="Có 0 đánh giá" style="width: 0.0%;" class="rating-overview__progress-bar"></div>
+											</div>
+										</div>
+										<div class="col-sm-2 col-md-2">
+											<div class="rating-overview__count-user-rate" data-value="0.0"> 0%</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="product-detail__comment">
+						<div class="product-detail__sidebar__comment" id="step1" style="display: none">
+							<div class="title-rate">Đánh giá của bạn</div>
+							<div id="yourComment"></div>
+						</div>
+						<div class="product-detail__sidebar__comment" id="step2">
+							<form id="vinReviewForm" class="product-comment__form js-validation-10-charactor" action="/tinh-chat-nang-co-sisley-paris-sisleya-global-firming-serum-30ml-p-PRI1062242/review?offer=PRI1062242_P6F"
+							 method="post">
+								<div class="title-rate">Viết đánh giá</div>
+								<div class="title-rate"><span>Đánh giá</span>
+									<div class="comment-form__rating-wrapper js-review-write pull-right">
+										<div class="form-group comment-form__rating">
+											<div class="rating rating-set js-ratingCalcSet">
+												<div class="rating-stars js-writeReviewStars" id="all-starts"><span class="js-ratingIcon glyphicon glyphicon-star active"></span><span
+													 class="js-ratingIcon glyphicon glyphicon-star"></span><span class="js-ratingIcon glyphicon glyphicon-star"></span><span
+													 class="js-ratingIcon glyphicon glyphicon-star"></span><span class="js-ratingIcon glyphicon glyphicon-star"></span></div>
+											</div><input id="review.rating" name="rating" class="sr-only js-ratingSetInput hidden" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div id="commentErrMsg" class="comment-form__error"></div>
+								<div class="comment-form__container">
+									<div class="form-group"><label class="" for="reviewComment"><span class="skip"></span></label><textarea id="reviewComment"
+										 name="comment" class="form-control" placeholder="Mời bạn viết đánh giá về sản phẩm này, vui lòng viết tiếng Việt có dấu....."></textarea></div>
+									<div class="help-block new-block hidden" style="color: #c53131"> Nội dung bình luận phải từ 10 kí tự trở lên</div>
+									<div class="help-block over-character-block hidden" style="color: #c53131"> Nội dung bình luận không vượt quá
+										500 kí tự</div>
+								</div>
+								<div class="comment-form__navigation" style="display: none">
+									<div id="anonymous-info">
+										<div id="alias-comment-process">
+											<div class="form-group"><label class="control-label invisible-label hidden" for="alias"></label><input id="alias"
+												 name="alias" class="form-control form-control" placeholder="Tên của bạn" type="text" value=""></div>
+										</div>
+									</div>
+									<div class="comment-form__captcha" id="anonymousCapcthreview" loaded="true">
+										<div class="captcha-section">
+											<div id="js-product-review__captcha" class="form_field-elements control-group">
+												<div style="width: 304px; height: 78px;">
+													<div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfZjRgUAAAAAIf1nMy4ouMIuTdngEM0FqdBg0Xw&amp;co=aHR0cHM6Ly93d3cuYWRheXJvaS5jb206NDQz&amp;hl=vi&amp;v=v1543818755456&amp;size=normal&amp;cb=irdhapdaht7v"
+														 width="304" height="78" role="presentation" name="a-8bxyadv5uhxl" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea
+													 id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+												</div>
+											</div>
+											<p id="js-product-review__captcha-error" class="error-message help-block"></p>
+										</div>
+									</div>
+									<script type="text/javascript">
+										window.addEventListener('scroll',function (ev) {
+											var rvc = $('#anonymousCapcthreview');
+											var wt = $(window).scrollTop();
+											var wb = wt + $(window).height();
+											var ot = rvc.offset().top;
+											var ob = ot + rvc.height();
+											if (!rvc.attr("loaded") && wt <= ob && wb >= ot) {
+												ACC.captcha.renderWidget('js-product-review__captcha');
+												rvc.attr("loaded",true);
+											}
+										});
+									</script><input type="hidden" name="isAnonymous" value="true">
+								</div>
+								<div class="row" style="padding-top: 16px">
+									<div class="col-md-6 col-xs-6">
+										<div class="comment-form__message" id="commentCounter"><span id="currentCommentCounter">0</span>/ 500 ký tự</div>
+									</div>
+									<div class="col-md-6 col-xs-6"><button type="button" class="btn btn-block btn-positive comment-form__submit js-review-submit"
+										 value="Gửi" data-url="/tinh-chat-nang-co-sisley-paris-sisleya-global-firming-serum-30ml-p-PRI1062242/review?offer=PRI1062242_P6F"
+										 disabled="disabled"> Gửi</button></div>
+								</div>
+								<div><input type="hidden" name="CSRFToken" value="abbb0dec-41b7-4db1-9e6e-bfe532e1743a"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="product-detail__comment p-t-b-16">
+				<div class="product-comment__container">
+					<div class="product-commnet__title"><span> 5 đánh giá từ khách hàng </span></div>
+					<div class="product-comment__list js-view-more-review" id="reviews" data-reviews="/tinh-chat-nang-co-sisley-paris-sisleya-global-firming-serum-30ml-p-PRI1062242/reviewhtml/all"
+					 data-allreviews="/tinh-chat-nang-co-sisley-paris-sisleya-global-firming-serum-30ml-p-PRI1062242/reviewhtml/all"
+					 data-totalreviews="5" loaded="true">
+						<div id="showingAllReviews" data-showingallreviews="true"></div>
+
+						<div class="review-list " data-totalreviews="5">
+							<!-- comment-item -->
+							<div class="product-comment__item ">
+								<div class="row" style="margin: 0">
+									<div class="col-md-3">
+										<div class="comment-item__left comment-user-avatar">
+											O</div>
+										<div class="comment-user-info">
+											<div class="row">
+												<div class="col-md-12 col-xs-6">
+													<h3 class="comment-item__user">Oanh</h3>
+													<div class="comment-item__action clearfix">
+														<div class="comment-item__time hidden-md hidden-lg">
+															<span class="date">13/04/2017 16:44</span>
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-6 hidden-md hidden-lg p-t-8">
+													<div class="rating  hidden-md pull-right">
+														<div class="rating-stars pull-left js-ratingCalc " data-rating="{&quot;rating&quot;:&quot;5.0&quot;,&quot;total&quot;:5}">
+															<div class="greyStars">
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+																<span class="glyphicon glyphicon-star"></span>
+															</div>
+															<div class="greenStars js-greenStars" style="width: 0px;">
+																<span class="glyphicon glyphicon-star active"></span>
+																<span class="glyphicon glyphicon-star active"></span>
+																<span class="glyphicon glyphicon-star active"></span>
+																<span class="glyphicon glyphicon-star active"></span>
+																<span class="glyphicon glyphicon-star active"></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="rating">
+												<div class="comment-item__action clearfix">
+													<div class="comment-item__time hidden-xs hidden-md">
+														<span class="date">13/04/2017 16:44</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-9 p-t-8">
+										<div class="row">
+											<div class="col-md-6 col-xs-6">
+												<div class="rating hidden-xs hidden-md">
+													<div class="rating-stars pull-left js-ratingCalc " data-rating="{&quot;rating&quot;:&quot;5.0&quot;,&quot;total&quot;:5}">
+														<div class="greyStars">
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+															<span class="glyphicon glyphicon-star"></span>
+														</div>
+														<div class="greenStars js-greenStars" style="width: 126px;">
+															<span class="glyphicon glyphicon-star active"></span>
+															<span class="glyphicon glyphicon-star active"></span>
+															<span class="glyphicon glyphicon-star active"></span>
+															<span class="glyphicon glyphicon-star active"></span>
+															<span class="glyphicon glyphicon-star active"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-xs-6">
+
+											</div>
+										</div>
+
+										<div class="comment-item__content">
+											Có tiền mua serum này về xài là hết ý, da săn chắc và mịn màng hơn trước rất nhiều</div>
+									</div>
+								</div>
+							</div>
+
+							<a href="javascript:;" class="btn btn-white btn-view-more-review  hidden">Xem thêm bình luận</a>
+						</div>
+					</div>
+					<script type="text/javascript">
+						window.addEventListener('scroll',function (ev) {
+							var rvc = $('#reviews');
+							var wt = $(window).scrollTop();
+							var wb = wt + $(window).height();
+							var ot = rvc.offset().top;
+							var ob = ot + rvc.height();
+
+							if (!rvc.attr("loaded") && wt <= ob && wb >= ot) {
+								ACC.tabs.loadComments();
+								rvc.attr("loaded",true);
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

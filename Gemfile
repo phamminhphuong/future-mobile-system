@@ -32,6 +32,7 @@ gem "social-share-button"
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "delayed_job_active_record"
+gem "rails-controller-testing", "~> 0.0.3"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -50,6 +51,7 @@ group :test do
   gem "selenium-webdriver"
   gem "chromedriver-helper"
   gem "shoulda-matchers", github: "thoughtbot/shoulda-matchers"
+  gem "capybara"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

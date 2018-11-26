@@ -19,7 +19,8 @@ class Product < ApplicationRecord
   scope :select_category, -> {select :id, :name}
   scope :show_product_price, lambda {|price_begin, price_end|
     where "price >= ? AND price <= ?", price_begin, price_end}
-  scope :show_detail, -> (id){where id: id}
+  scope :show_detail, -> (id){find_by id: id}
+  scope :product_like, -> (id){where category_id: id}
   scope :select_products, -> {select :id, :name, :quantity, :price,
     :description, :hot, :category_id, :manufacturer_id}
   scope :show_image, -> (id){where product_id: id}

@@ -402,3 +402,18 @@ input {
 #line_pay{
   border: 0.4px dashed $gray;
 }
+
+.div-title-product-eq{
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.title-product-eq{
+  background-color: #eff2f6;
+  font-size: 24px;
+  color: #000;
+  font-weight: 300;
+  padding: 8px 18px;
+  line-height: 1.3;
+}

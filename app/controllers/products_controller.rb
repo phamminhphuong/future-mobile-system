@@ -4,12 +4,8 @@ class ProductsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @products = Product.show_product(params[:id]).includes(:manufacturers)
-      .page(params[:page])
-      .per Settings.size.size_page
-    @details = Product.show_detail(params[:id])
-      .page(params[:page])
-      .per Settings.size.size_page
+    @detail = Product.show_detail(params[:id])
+    @product_likes = Product.where(category_id: @detail.category_id).where.not(id: @detail.id)
     @images = Image.select_image_product(@product).limit Settings.size.list_image
     @comments = Comment.select_comment_product(@product).show_comment_desc
       .page(params[:page])
