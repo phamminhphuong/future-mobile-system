@@ -1,7 +1,8 @@
 class Admin::ManufacturersController < Admin::BaseController
-  before_action :load_manufacturer, except: %i(new index create import)
+  before_action :load_manufacturer, except: %i(new index create import softdelete harddelete restore)
   before_action :load_list_manufacturer, only: %i(index import destroy)
   before_action :set_search, only: %i(index import destroy)
+  before_action :find_manufacturer, only: %i(harddelete restore)
 
   def index
     @manufacturers = @q.result.page(params[:page])
@@ -56,6 +57,32 @@ class Admin::ManufacturersController < Admin::BaseController
     redirect_to admin_manufacturers_url
   end
 
+  def softdelete
+    @manufacturers = Manufacturer.only_deleted.page(params[:page])
+      .per Settings.size.size_page_admin
+  end
+
+  def harddelete
+    if @manufacturer.really_destroy!
+      flash[:success] = "Delete success"
+      redirect_to admin_manufacturers_path
+    else
+      flash[:danger] = "Delete error"
+      render :sodtdelete
+    end
+  end
+
+  def restore
+    if @manufacturer.restore(:recursive => true)
+      flash[:success] = "Restore success"
+      redirect_to admin_manufacturers_path
+    else
+      flash[:danger] = "Restore error"
+      render :sodtdelete
+    end
+  end
+
+
   private
 
   def manufacturer_params
@@ -80,4 +107,12 @@ class Admin::ManufacturersController < Admin::BaseController
   def set_search
     @q = Manufacturer.ransack params[:q]
   end
+
+  def find_manufacturer
+    @manufacturer =  Manufacturer.with_deleted.find_by id: params[:id]
+    return if @manufacturer.present?
+    flash[:danger] = t "not_manufacturer"
+    redirect_to admin_manufacturers_url
+  end
+
 end

@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get "dasboard/index", to: "dasboard#index"
     resources :accounts
+    get "manufacturers/soft", to: "manufacturers#softdelete"
+    delete "manufacturers/harddelete/:id", to: "manufacturers#harddelete", as: "harddelete"
+    put "manufacturers/restore/:id", to: "manufacturers#restore", as: "restore"
     resources :categories, :manufacturers, :products do
       collection {post :import}
     end

@@ -1,4 +1,5 @@
 class Manufacturer < ApplicationRecord
+  acts_as_paranoid
   extend OpenSpreadsheet
 
   has_many :products, dependent: :destroy

@@ -154,11 +154,21 @@
 								</div>
 								<div class="col-md-12 col-xs-12 text-center">
 									<div class="adr-rating-view adr-rating-view-sm text-right">
-										<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
-											 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+										<div class="rating-view-list">
+										  <i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+											<i class="glyphicon glyphicon-star"></i>
+										</div>
 										<div class="rating-view-active" style="width: 96.0%">
-											<div class="rating-view-active-container" data-vale="24.0"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
-												 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+											<div class="rating-view-active-container" data-vale="24.0">
+												<i class="glyphicon glyphicon-star"></i>
+												<i class="glyphicon glyphicon-star"></i>
+												<i class="glyphicon glyphicon-star"></i>
+												<i class="glyphicon glyphicon-star"></i>
+												<i class="glyphicon glyphicon-star"></i>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -169,11 +179,21 @@
 										<div class="col-sm-3 col-md-4">
 											<div class="rating-overview__count-star">
 												<div class="adr-rating-view adr-rating-view-sm">
-													<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
-														 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													<div class="rating-view-list">
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+													</div>
 													<div class="rating-view-active" style="width: 100%" data-entry="4">
-														<div class="rating-view-active-container"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
-															 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+														<div class="rating-view-active-container">
+															<i class="glyphicon glyphicon-star"></i>
+															<i class="glyphicon glyphicon-star"></i>
+															<i class="glyphicon glyphicon-star"></i>
+															<i class="glyphicon glyphicon-star"></i>
+															<i class="glyphicon glyphicon-star"></i>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -193,11 +213,21 @@
 										<div class="col-sm-3 col-md-4">
 											<div class="rating-overview__count-star">
 												<div class="adr-rating-view adr-rating-view-sm">
-													<div class="rating-view-list"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
-														 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+													<div class="rating-view-list">
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														</div>
 													<div class="rating-view-active" style="width: 80%" data-entry="1">
-														<div class="rating-view-active-container"><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i
-															 class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></div>
+														<div class="rating-view-active-container">
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														<i class="glyphicon glyphicon-star"></i>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -336,19 +366,7 @@
 											<p id="js-product-review__captcha-error" class="error-message help-block"></p>
 										</div>
 									</div>
-									<script type="text/javascript">
-										window.addEventListener('scroll',function (ev) {
-											var rvc = $('#anonymousCapcthreview');
-											var wt = $(window).scrollTop();
-											var wb = wt + $(window).height();
-											var ot = rvc.offset().top;
-											var ob = ot + rvc.height();
-											if (!rvc.attr("loaded") && wt <= ob && wb >= ot) {
-												ACC.captcha.renderWidget('js-product-review__captcha');
-												rvc.attr("loaded",true);
-											}
-										});
-									</script><input type="hidden" name="isAnonymous" value="true">
+									<input type="hidden" name="isAnonymous" value="true">
 								</div>
 								<div class="row" style="padding-top: 16px">
 									<div class="col-md-6 col-xs-6">
@@ -455,20 +473,6 @@
 							<a href="javascript:;" class="btn btn-white btn-view-more-review  hidden">Xem thêm bình luận</a>
 						</div>
 					</div>
-					<script type="text/javascript">
-						window.addEventListener('scroll',function (ev) {
-							var rvc = $('#reviews');
-							var wt = $(window).scrollTop();
-							var wb = wt + $(window).height();
-							var ot = rvc.offset().top;
-							var ob = ot + rvc.height();
-
-							if (!rvc.attr("loaded") && wt <= ob && wb >= ot) {
-								ACC.tabs.loadComments();
-								rvc.attr("loaded",true);
-							}
-						});
-					</script>
 				</div>
 			</div>
 		</div>

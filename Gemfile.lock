@@ -228,6 +228,8 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    paranoia (2.4.1)
+      activerecord (>= 4.0, < 5.3)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
@@ -383,6 +385,7 @@ DEPENDENCIES
   mysql2
   omniauth
   omniauth-google-oauth2
+  paranoia (~> 2.1, >= 2.1.5)
   puma (~> 3.11)
   rails (~> 5.2.1)
   rails-controller-testing (~> 0.0.3)

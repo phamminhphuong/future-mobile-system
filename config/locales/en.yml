@@ -287,3 +287,5 @@ en:
   vi: "Vietnamese"
   page_admin: "Page admin"
   evaluate: "Evaluate : "
+  soft_delete: "Soft delete"
+  restore: "Restore"

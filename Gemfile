@@ -33,6 +33,7 @@ gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "delayed_job_active_record"
 gem "rails-controller-testing", "~> 0.0.3"
+gem "paranoia", "~> 2.1", ">= 2.1.5"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
